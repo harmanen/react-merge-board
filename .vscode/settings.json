@@ -1,11 +1,8 @@
 {
-  "spellright.language": [
-    "en",
-    "fi"
-  ],
-  "spellright.documentTypes": [
-    "markdown",
-    "latex",
-    "plaintext"
-  ]
+  "spellright.language": ["en", "fi"],
+  "spellright.documentTypes": ["markdown", "latex", "plaintext"],
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.tsx": "javascriptreact"
+  }
 }
