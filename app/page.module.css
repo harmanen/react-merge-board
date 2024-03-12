@@ -1,8 +1,33 @@
 .main {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  justify-content: center;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+  width: var(--app-width);
+  padding: 0 var(--layout-padding);
+  background-color: #252422;
+}
+
+.infoContainer,
+.gridContainer {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+}
+
+.infoContainer {
+  height: calc(100vh / 5);
+  margin: var(--layout-padding) 0;
+}
+
+.gridContainer {
+  height: calc((100vh / 5) * 4);
+  margin-bottom: var(--layout-padding);
 }
