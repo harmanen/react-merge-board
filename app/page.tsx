@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import styles from './page.module.css';
 import mockData from './data.json';
-import { Grid } from '@mui/material';
+import { Board } from './components/Board';
 
 // Grid size
 const { width, height } = mockData;
@@ -29,28 +29,13 @@ export default function Home() {
         }}
       >
         <Box className={styles.infoContainer}>INFO</Box>
-        <Grid
-          columns={width}
-          container
-          className={styles.gridContainer}
-          // Dynamically define grid height
-          sx={{
-            maxHeight: `calc(6 * var(--layout-padding) + ${height} * var(--grid-size))`,
-          }}
-        >
-          {gridIdList.map((item, index) => (
-            <Grid
-              item
-              xs={1}
-              key={item}
-              className={
-                index % 2 === 0 ? styles.gridItemDark : styles.gridItemLight
-              }
-            >
-              {item}
-            </Grid>
-          ))}
-        </Grid>
+        {gridIdList && (
+          <Board
+            width={width}
+            height={height}
+            gridIdList={gridIdList}
+          />
+        )}
       </Box>
     </main>
   );
