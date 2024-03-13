@@ -22,6 +22,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
   const handleDragEnd = (event: DragEndEvent) => {
     // Target index is the grid id
     const targetIndex = event.over?.id;
+    const targetItem = itemsOnBoard[targetIndex as number];
 
     // Find source index with the item uuid
     const sourceItem = itemsOnBoard.find(
@@ -33,7 +34,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
     // Update array if indices exist
     if (typeof targetIndex === 'number' && typeof sourceIndex === 'number') {
       let newItems = [...itemsOnBoard];
-      newItems[sourceIndex] = null;
+      newItems[sourceIndex] = targetItem;
       newItems[targetIndex] = sourceItem!;
 
       setItemsOnBoard(newItems);
