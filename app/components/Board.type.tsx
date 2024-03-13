@@ -13,5 +13,5 @@ export default interface Board {
   items: Array<Item | null>;
   width: number;
   height: number;
-  gridIdList: Array<String>;
+  gridIdList: Array<number>;
 }

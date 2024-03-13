@@ -5,7 +5,11 @@ import StarIcon from '@mui/icons-material/Star';
 import { CSS } from '@dnd-kit/utilities';
 import GenericProps from './GenericProps.type';
 
-export function DraggableIconItem({ id, children }: GenericProps) {
+interface Props extends GenericProps {
+  iconId: number;
+}
+
+export function DraggableIconItem({ id, children, iconId }: Props) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
     data: {
@@ -20,11 +24,13 @@ export function DraggableIconItem({ id, children }: GenericProps) {
   return (
     <Button
       ref={setNodeRef}
-      style={{ ...style, position: 'absolute' }}
+      style={style}
       {...listeners}
       {...attributes}
     >
-      <StarIcon sx={{ color: 'red' }}>{children}</StarIcon>
+      <StarIcon sx={{ color: 'red' }} />
+      {children}
+      {iconId}
     </Button>
   );
 }

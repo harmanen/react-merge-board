@@ -1,7 +1,9 @@
 import Box from '@mui/material/Box';
 import styles from './page.module.css';
-import mockData from './data.json';
 import { Board } from './components/Board';
+
+// Replace with an API call
+import mockData from './data.json';
 
 // Grid size
 const { width, height } = mockData;
@@ -12,10 +14,11 @@ if (gridSize !== mockData.items.length) {
   console.warn('Amount of items does not match the grid!');
 }
 
-// Create list of grid ids. Used to generate the board.
-let gridIdList: Array<string> = [];
-for (let i = 1; i <= gridSize; i++) {
-  gridIdList.push(`grid-item-${i}`);
+// Create list of grid ids.
+// Used to generate the board with unique droppable regions.
+let gridIdList: Array<number> = [];
+for (let i = 0; i < gridSize; i++) {
+  gridIdList.push(i);
 }
 
 export default function Home() {
