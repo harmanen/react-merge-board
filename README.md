@@ -2,6 +2,10 @@
 
 Proof of concept demo for the board of merge-type games.
 
+https://harmanen.github.io/react-merge-board/
+
+## Development
+
 Developed using Node.js version 20.22.1 on Windows 11.
 
 Run locally using `npm run dev`.
