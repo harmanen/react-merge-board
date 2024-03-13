@@ -3,6 +3,9 @@
   "spellright.documentTypes": ["markdown", "latex", "plaintext"],
   "editor.formatOnSave": true,
   "files.associations": {
-    "*.tsx": "javascriptreact"
+    "*.tsx": "typescriptreact"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
