@@ -2,8 +2,8 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
-  basePath: '/react-merge-board',
-  assetPrefix: '/react-merge-board',
+  basePath: 'https://harmanen.github.io/react-merge-board/',
+  assetPrefix: 'https://harmanen.github.io/react-merge-board/',
 };
 
 export default nextConfig;
