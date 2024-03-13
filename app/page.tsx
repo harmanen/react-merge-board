@@ -4,6 +4,7 @@ import { Board } from './components/Board';
 
 // Replace with an API call
 import mockData from './data.json';
+import { InfoBox } from './components/InfoBox';
 
 // Grid size
 const { width, height } = mockData;
@@ -31,7 +32,7 @@ export default function Home() {
           width: `calc(6 * var(--layout-padding) + ${width} * var(--grid-size))`,
         }}
       >
-        <Box className={styles.infoContainer}>INFO</Box>
+        <InfoBox />
         {gridIdList && (
           <Board
             items={mockData.items}
