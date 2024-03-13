@@ -13,7 +13,7 @@ if (gridSize !== mockData.items.length) {
 }
 
 // Create list of grid ids. Used to generate the board.
-let gridIdList = [];
+let gridIdList: Array<string> = [];
 for (let i = 1; i <= gridSize; i++) {
   gridIdList.push(`grid-item-${i}`);
 }

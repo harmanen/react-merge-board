@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { Box } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 
-export function DraggableIconItem({ id, children }) {
+type Props = {
+  id: string;
+  children: ReactNode;
+};
+
+export function DraggableIconItem({ id, children }: Props) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
