@@ -1,17 +1,22 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
+import GenericProps from './GenericProps.type';
 
-type Props = {
-  id: string;
-  children: ReactNode;
-};
-
-export function DroppableGridItem({ id, children }: Props) {
+export function DroppableGridItem({ id, children }: GenericProps) {
   const { isOver, setNodeRef } = useDroppable({
     id,
+    data: {
+      type: 'container',
+    },
   });
+
   const style = {
-    opacity: isOver ? 1 : 0.5,
+    // opacity: isOver ? 1 : 0.5, // TBD
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   };
 
   return (

@@ -1,32 +1,30 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
-import { Box } from '@mui/material';
+import { Button } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import { CSS } from '@dnd-kit/utilities';
+import GenericProps from './GenericProps.type';
 
-type Props = {
-  id: string;
-  children: ReactNode;
-};
-
-export function DraggableIconItem({ id, children }: Props) {
+export function DraggableIconItem({ id, children }: GenericProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
+    data: {
+      type: 'item',
+    },
   });
 
-  const style = transform
-    ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : undefined;
+  const style = {
+    transform: CSS.Translate.toString(transform),
+  };
 
   return (
-    <Box
+    <Button
       ref={setNodeRef}
-      style={style}
+      style={{ ...style, position: 'absolute' }}
       {...listeners}
       {...attributes}
     >
       <StarIcon sx={{ color: 'red' }}>{children}</StarIcon>
-    </Box>
+    </Button>
   );
 }
