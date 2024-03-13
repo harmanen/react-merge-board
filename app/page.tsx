@@ -31,6 +31,7 @@ export default function Home() {
         <Box className={styles.infoContainer}>INFO</Box>
         {gridIdList && (
           <Board
+            items={mockData.items}
             width={width}
             height={height}
             gridIdList={gridIdList}

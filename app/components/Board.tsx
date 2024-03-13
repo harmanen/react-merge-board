@@ -1,15 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { DragEventHandler, useState } from 'react';
 import { Grid } from '@mui/material';
 import { DndContext } from '@dnd-kit/core';
 import { DroppableGridItem } from './DroppableGridItem';
 import styles from '../page.module.css';
 import { DraggableIconItem } from './DraggableIconItem';
+import type Board from './Board.type';
 
-export function Board({ width, height, gridIdList }) {
-  // Implement dropping to grid
-
+export function Board({ items, width, height, gridIdList }: Board) {
   // const handleDragEnd = (event) => {
   //   if (event.over && event.over.id === 'test') {
   //     setIsDropped(true);
@@ -19,7 +18,7 @@ export function Board({ width, height, gridIdList }) {
   return (
     <DndContext
       id={'board-dnd-context'}
-      // onDragEnd={handleDragEnd} TBD
+      // onDragEnd={handleDragEnd}
     >
       <Grid
         columns={width}
@@ -34,13 +33,13 @@ export function Board({ width, height, gridIdList }) {
           <Grid
             item
             xs={1}
-            key={item}
+            key={index}
             className={
               index % 2 === 0 ? styles.gridItemDark : styles.gridItemLight
             }
           >
-            <DroppableGridItem>
-              {item} {index === 0 && <DraggableIconItem id="test" />}
+            <DroppableGridItem id={index}>
+              {index === 0 && <DraggableIconItem id="test" />}
             </DroppableGridItem>
           </Grid>
         ))}
