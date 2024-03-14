@@ -12,6 +12,9 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.2: Icons**
+  - Define icons and colours for items
+
 - **0.1: First iteration of the dynamic grid generation and draggable objects**
   - Items can be moved around but that's pretty much it
   - Zero effort for the visuals at this point so looks horrible (but works!)
