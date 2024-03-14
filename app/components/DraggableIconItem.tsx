@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
-import { Button } from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
+import { IconButton } from '@mui/material';
 import { CSS } from '@dnd-kit/utilities';
 import GenericProps from './GenericProps.type';
 import itemInfo from '../constants/itemInfo';
@@ -24,16 +23,17 @@ export function DraggableIconItem({ id, children, itemId }: Props) {
   };
 
   return (
-    <Button
+    <IconButton
       ref={setNodeRef}
       style={style}
       {...listeners}
       {...attributes}
       disableRipple
+      className="icon-button"
     >
       {/* Get icon or use default if missing */}
       {itemInfo[itemId].icon || <Block sx={{ color: 'red' }} />}
       {children}
-    </Button>
+    </IconButton>
   );
 }
