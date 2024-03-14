@@ -34,6 +34,7 @@ const itemObject = Array.from(uniqueItemIds).reduce((soFar, id) => {
     ...soFar,
     [id]: {
       itemType: filteredData.find((item) => item?.itemId === id)?.itemType,
+      icon: null,
     },
   };
 }, {});
