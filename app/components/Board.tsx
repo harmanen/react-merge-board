@@ -72,7 +72,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
                   <DraggableIconItem
                     // Generate unique ids on the fly
                     id={iconItem.uuid}
-                    iconId={iconItem.itemId}
+                    itemId={iconItem.itemId}
                   />
                 )}
               </DroppableGridItem>

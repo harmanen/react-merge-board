@@ -4,12 +4,14 @@ import { Button } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { CSS } from '@dnd-kit/utilities';
 import GenericProps from './GenericProps.type';
+import itemInfo from '../constants/itemInfo';
+import { Block } from '@mui/icons-material';
 
 interface Props extends GenericProps {
-  iconId: number;
+  itemId: number;
 }
 
-export function DraggableIconItem({ id, children, iconId }: Props) {
+export function DraggableIconItem({ id, children, itemId }: Props) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
     data: {
@@ -28,9 +30,9 @@ export function DraggableIconItem({ id, children, iconId }: Props) {
       {...listeners}
       {...attributes}
     >
-      <StarIcon sx={{ color: 'red' }} />
+      {/* Get icon or use default if missing */}
+      {itemInfo[itemId].icon || <Block sx={{ color: 'red' }} />}
       {children}
-      {iconId}
     </Button>
   );
 }
