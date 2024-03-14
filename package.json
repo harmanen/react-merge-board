@@ -1,11 +1,11 @@
 {
   "name": "react-merge-board",
-  "version": "0.1",
+  "version": "0.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build && touch out/.nojekyll",
-    "start": "next start",
+    "start": "npx serve@latest out",
     "lint": "next lint"
   },
   "dependencies": {

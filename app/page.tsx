@@ -3,7 +3,7 @@ import styles from './page.module.css';
 import { Board } from './components/Board';
 
 // Replace with an API call
-import mockData from './data.json';
+import mockData from './data';
 import { InfoBox } from './components/InfoBox';
 
 // Grid size
