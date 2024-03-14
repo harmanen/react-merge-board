@@ -29,6 +29,7 @@ export function DraggableIconItem({ id, children, itemId }: Props) {
       style={style}
       {...listeners}
       {...attributes}
+      disableRipple
     >
       {/* Get icon or use default if missing */}
       {itemInfo[itemId].icon || <Block sx={{ color: 'red' }} />}

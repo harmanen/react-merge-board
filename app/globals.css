@@ -18,3 +18,8 @@ body {
 a {
   text-decoration: none;
 }
+
+.item-icon {
+  width: 50%;
+  height: 50%;
+}
