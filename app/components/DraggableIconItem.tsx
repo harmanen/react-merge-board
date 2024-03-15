@@ -5,12 +5,15 @@ import { CSS } from '@dnd-kit/utilities';
 import GenericProps from './GenericProps.type';
 import itemInfo from '../constants/itemInfo';
 import { Block } from '@mui/icons-material';
+import { Item } from './Board.type';
 
 interface Props extends GenericProps {
-  itemId: number;
+  iconItem: Item;
 }
 
-export function DraggableIconItem({ id, children, itemId }: Props) {
+export function DraggableIconItem({ id, iconItem, children }: Props) {
+  const { itemId } = iconItem;
+
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
     data: {
