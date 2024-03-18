@@ -7,7 +7,7 @@
 .contentContainer {
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   padding: 0 var(--layout-padding);
