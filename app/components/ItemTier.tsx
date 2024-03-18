@@ -6,20 +6,6 @@ interface Props {
 }
 
 export function ItemTier({ itemLevel }: Props) {
-  // Use black font color for certain cases to get some contrast
-  let textColor;
-
-  switch (itemLevel) {
-    case 1:
-    case 11:
-      textColor = '#000000';
-      break;
-
-    default:
-      textColor = tierColorMap[itemLevel];
-      break;
-  }
-
   return (
     <Box
       className="item-tier-container"
@@ -29,7 +15,7 @@ export function ItemTier({ itemLevel }: Props) {
     >
       <Typography
         className="item-tier-text"
-        style={{ color: textColor }}
+        style={{ color: tierColorMap[itemLevel] }}
       >
         {itemLevel}
       </Typography>
