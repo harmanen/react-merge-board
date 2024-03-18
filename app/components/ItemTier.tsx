@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import tierColorMap from '../constants/TierColorMap';
+import tierColorMap from '../constants/tierColorMap';
 
 interface Props {
   itemLevel: number;
