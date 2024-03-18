@@ -2,7 +2,8 @@
   --layout-padding: 1rem;
   --grid-size: 6.25rem;
   --icon-size: 70%;
-  --item-tier-font-size: 1.5rem
+  /* Heuristic scaling for mobile views */
+  --item-tier-font-size: min(1.5rem, 3vw);
 }
 
 * {
