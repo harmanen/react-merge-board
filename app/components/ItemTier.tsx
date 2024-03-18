@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import tierColorMap from '../constants/TierColorMap';
 
 interface Props {
   itemLevel: number;
@@ -7,7 +8,12 @@ interface Props {
 export function ItemTier({ itemLevel }: Props) {
   return (
     <Box className="item-tier-container">
-      <Typography className="item-tier-text">{itemLevel}</Typography>
+      <Typography
+        className="item-tier-text"
+        style={{ color: tierColorMap[itemLevel] }}
+      >
+        {itemLevel}
+      </Typography>
     </Box>
   );
 }

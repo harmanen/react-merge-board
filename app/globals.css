@@ -62,4 +62,5 @@ a {
 
 .item-tier-text {
   font-size: var(--item-tier-font-size);
+  font-weight: 900;
 }
