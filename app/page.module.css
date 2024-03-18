@@ -40,6 +40,10 @@
   justify-content: center;
 }
 
+.grid-item-container {
+  aspect-ratio: 1 / 1;
+}
+
 .gridItemDark,
 .gridItemLight {
   aspect-ratio: 1 / 1;

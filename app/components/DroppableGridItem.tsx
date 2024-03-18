@@ -24,6 +24,7 @@ export function DroppableGridItem({ id, children }: GenericProps) {
     <Box
       ref={setNodeRef}
       style={style}
+      className="grid-item-container"
     >
       {children}
     </Box>
