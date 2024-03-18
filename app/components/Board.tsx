@@ -2,7 +2,15 @@
 
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
-import { DndContext, DragEndEvent } from '@dnd-kit/core';
+import {
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import { v4 as uuidv4 } from 'uuid';
 import { DroppableGridItem } from './DroppableGridItem';
 import styles from '../page.module.css';
@@ -10,6 +18,12 @@ import { DraggableIconItem } from './DraggableIconItem';
 import type Board from './Board.type';
 
 export function Board({ items, width, height, gridIdList }: Board) {
+  // Define sensor types for DnD
+  const mouseSensor = useSensor(MouseSensor);
+  const touchSensor = useSensor(TouchSensor);
+  const keyboardSensor = useSensor(KeyboardSensor);
+  const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
+
   // Track locations of items using component state
   const [itemsOnBoard, setItemsOnBoard] = useState(
     // Add uuids to data to track item movements
@@ -45,6 +59,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
     <DndContext
       id={'board-dnd-context'}
       onDragEnd={handleDragEnd}
+      sensors={sensors}
     >
       <Grid
         columns={width}
@@ -72,7 +87,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
                   <DraggableIconItem
                     // Generate unique ids on the fly
                     id={iconItem.uuid}
-                    itemId={iconItem.itemId}
+                    iconItem={iconItem}
                   />
                 )}
               </DroppableGridItem>

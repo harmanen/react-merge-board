@@ -12,6 +12,9 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.3: Enhanced icons**
+  - Display item tier numbers and define colours for tiers. Display colours in various places
+
 - **0.2: Icons**
   - Define icons and colours for items
 
