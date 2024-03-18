@@ -12,6 +12,7 @@
   height: fit-content;
   padding: 0 var(--layout-padding);
   background-color: #252422;
+  min-height: 100vh;
 }
 
 .infoContainer,
@@ -34,7 +35,9 @@
 }
 
 .gridContainer {
-  height: calc((100vh / 5) * 4);
+  /* Leave this as a reminder of the idea that grid would take */
+  /* 4 / 5 of the vh. Instead, define infoContainer and rest is dynamic */
+  /* height: calc((100vh / 5) * 4); */
   margin-bottom: var(--layout-padding);
   padding: var(--layout-padding);
   display: flex;
