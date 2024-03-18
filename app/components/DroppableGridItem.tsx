@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import GenericProps from './GenericProps.type';
+import { Box } from '@mui/material';
 
 export function DroppableGridItem({ id, children }: GenericProps) {
   const { isOver, setNodeRef } = useDroppable({
@@ -20,11 +21,11 @@ export function DroppableGridItem({ id, children }: GenericProps) {
   };
 
   return (
-    <div
+    <Box
       ref={setNodeRef}
       style={style}
     >
       {children}
-    </div>
+    </Box>
   );
 }
