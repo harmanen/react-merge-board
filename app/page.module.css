@@ -18,8 +18,9 @@
 .infoContainer,
 .gridContainer {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--grid-bg-light);
   border-radius: 1rem;
+  border: var(--container-border);
 }
 
 .infoContainer {
@@ -32,7 +33,6 @@
   text-align: center;
   padding: var(--layout-padding);
   font-size: var(--item-tier-font-size);
-  background-color: var(--grid-bg-light);
 }
 
 .gridContainer {
@@ -43,7 +43,6 @@
   padding: var(--layout-padding);
   display: flex;
   justify-content: center;
-  background-color: var(--grid-bg-light);
 }
 
 .grid-item-container {
