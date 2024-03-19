@@ -23,29 +23,29 @@ const selectBorder = (index: number, width: number, height: number) => {
   // so they don't look like a part of the background but the grid.
   // Could be optimized using CSS :nth?
   let gridItemStyles = {
-    'border-top': 'none',
-    'border-right': 'none',
-    'border-bottom': 'none',
-    'border-left': 'none',
+    borderTop: 'none',
+    borderRight: 'none',
+    borderBottom: 'none',
+    borderLeft: 'none',
   };
 
   const border = 'var(--grid-item-border)';
 
   // Top
   if (index <= width && index % 2 !== 0) {
-    gridItemStyles['border-top'] = border;
+    gridItemStyles.borderTop = border;
   }
   // Left
   if (index % width === 0) {
-    gridItemStyles['border-left'] = border;
+    gridItemStyles.borderLeft = border;
   }
   // Right
   if ((index + 1) % width === 0) {
-    gridItemStyles['border-right'] = border;
+    gridItemStyles.borderRight = border;
   }
   // Bottom
   if (index >= width * height - width && index % 2 !== 0) {
-    gridItemStyles['border-bottom'] = border;
+    gridItemStyles.borderBottom = border;
   }
 
   return gridItemStyles;
