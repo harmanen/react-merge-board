@@ -31,7 +31,8 @@
   font-size: 2rem;
   text-align: center;
   padding: var(--layout-padding);
-  font-size: var(--item-tier-font-size)
+  font-size: var(--item-tier-font-size);
+  background-color: var(--grid-bg-light);
 }
 
 .gridContainer {
@@ -42,6 +43,7 @@
   padding: var(--layout-padding);
   display: flex;
   justify-content: center;
+  background-color: var(--grid-bg-light);
 }
 
 .grid-item-container {
@@ -54,9 +56,14 @@
 }
 
 .gridItemDark {
-  background-color: #ACACAC;
+  background-image: repeating-conic-gradient(
+    var(--grid-bg-dark) 0deg 45deg,
+    var(--grid-bg-light) 45deg 135deg,
+    var(--grid-bg-dark) 135deg 180deg
+  );
+  border: var(--grid-item-border)
 }
 
 .gridItemLight {
-  background-color: #FFFFFF;
+  background-color: var(--grid-bg-light);
 }

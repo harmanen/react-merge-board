@@ -73,6 +73,35 @@ export function Board({ items, width, height, gridIdList }: Board) {
         {gridIdList.map((gridId, index) => {
           const iconItem = itemsOnBoard[index];
 
+          // Append border to "light" grid items at the edges of the board
+          // so they don't look like a part of the background but the grid.
+          // Could be optimized using CSS :nth?
+          let gridItemStyles = {
+            'border-top': 'none',
+            'border-right': 'none',
+            'border-bottom': 'none',
+            'border-left': 'none',
+          };
+
+          const border = 'var(--grid-item-border)';
+
+          // Top
+          if (index <= width && index % 2 !== 0) {
+            gridItemStyles['border-top'] = border;
+          }
+          // Left
+          if (index % width === 0) {
+            gridItemStyles['border-left'] = border;
+          }
+          // Right
+          if ((index + 1) % width === 0) {
+            gridItemStyles['border-right'] = border;
+          }
+          // Bottom
+          if (index >= width * height - width && index % 2 !== 0) {
+            gridItemStyles['border-bottom'] = border;
+          }
+
           return (
             <Grid
               item
@@ -81,6 +110,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
               className={
                 index % 2 === 0 ? styles.gridItemDark : styles.gridItemLight
               }
+              sx={gridItemStyles}
             >
               <DroppableGridItem id={gridId}>
                 {iconItem && (
