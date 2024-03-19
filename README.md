@@ -12,6 +12,9 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.4: Board visuals**
+  - Define backgrounds and borders for main layout containers and grid items
+
 - **0.3: Enhanced icons**
   - Display item tier numbers and define colours for tiers. Display colours in various places
 
