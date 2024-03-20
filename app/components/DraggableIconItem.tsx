@@ -3,17 +3,35 @@ import { useDraggable } from '@dnd-kit/core';
 import { Box, IconButton } from '@mui/material';
 import { CSS } from '@dnd-kit/utilities';
 import GenericProps from './GenericProps.type';
-import itemInfo from '../constants/itemInfo';
-import { Block } from '@mui/icons-material';
+import itemInfo, { item } from '../constants/itemInfo';
+import { Block, VisibilityOff } from '@mui/icons-material';
 import { Item } from './Board.type';
 import { ItemTier } from './ItemTier';
 import tierColorMap from '../constants/tierColorMap';
 
 interface Props extends GenericProps {
   iconItem: Item;
+  isHidden: boolean;
 }
 
-export function DraggableIconItem({ id, iconItem, children }: Props) {
+export function DraggableIconItem({
+  id,
+  iconItem,
+  isHidden = false,
+  children,
+}: Props) {
+  // Helper functions
+  const getIcon = (item: item) => {
+    // Get icon or use default if missing
+    // Special case(s) handled separately
+    if (isHidden) {
+      return <VisibilityOff sx={{ color: 'gray', opacity: 0.6 }} />;
+    } else {
+      return item.icon || <Block sx={{ color: 'red' }} />;
+    }
+  };
+
+  // Component
   const { itemId, itemLevel } = iconItem;
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -23,9 +41,17 @@ export function DraggableIconItem({ id, iconItem, children }: Props) {
     },
   });
 
+  // Handle movement
   const style = {
     transform: CSS.Translate.toString(transform),
   };
+
+  // Icon shadow
+  let filter = `drop-shadow(0.1rem 0.2rem 0.3rem ${tierColorMap[itemLevel]})`;
+
+  if (isHidden) {
+    filter = '';
+  }
 
   return (
     <IconButton
@@ -36,16 +62,15 @@ export function DraggableIconItem({ id, iconItem, children }: Props) {
       disableRipple
       className="icon-button"
     >
-      {/* Get icon or use default if missing */}
       <Box
         className="icon-container"
         style={{
-          filter: `drop-shadow(0.1rem 0.2rem 0.3rem ${tierColorMap[itemLevel]})`,
+          filter: filter,
         }}
       >
-        {itemInfo[itemId].icon || <Block sx={{ color: 'red' }} />}
+        {getIcon(itemInfo[itemId])}
       </Box>
-      <ItemTier itemLevel={itemLevel} />
+      {!isHidden && <ItemTier itemLevel={itemLevel} />}
       {children}
     </IconButton>
   );

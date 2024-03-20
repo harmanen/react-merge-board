@@ -124,6 +124,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
                     // Generate unique ids on the fly
                     id={iconItem.uuid}
                     iconItem={iconItem}
+                    isHidden={itemsOnBoard[index]?.visibility === 'hidden'}
                   />
                 )}
               </DroppableGridItem>
