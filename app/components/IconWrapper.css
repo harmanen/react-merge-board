@@ -1,4 +1,4 @@
-.bubble-outer-container {
+.wrapper-outer-container {
   width: 100%;
   aspect-ratio: 1 / 1;
   position: relative;
@@ -27,7 +27,7 @@
   transform: translate(-50%,-50%); 
 }
 
-.bubble-item-container {
+.wrapper-item-container {
   position: absolute;
   width: 90%;
   aspect-ratio: 1 / 1;

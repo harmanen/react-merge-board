@@ -8,7 +8,7 @@ import { Block, VisibilityOff } from '@mui/icons-material';
 import { Item } from './Board.type';
 import { ItemTier } from './ItemTier';
 import tierColorMap from '../constants/tierColorMap';
-import Bubble from './Bubble';
+import IconWrapper from './IconWrapper';
 
 interface Props extends GenericProps {
   iconItem: Item;
@@ -32,7 +32,7 @@ export function DraggableIconItem({
     if (isHidden) {
       return <VisibilityOff sx={{ color: 'gray', opacity: 0.6 }} />;
     } else if (isInBubble) {
-      return <Bubble>{unwrappedIcon}</Bubble>;
+      return <IconWrapper>{unwrappedIcon}</IconWrapper>;
     } else {
       return unwrappedIcon;
     }
