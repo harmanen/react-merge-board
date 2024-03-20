@@ -4,7 +4,7 @@ import { Box, IconButton } from '@mui/material';
 import { CSS } from '@dnd-kit/utilities';
 import GenericProps from './GenericProps.type';
 import itemInfo, { item } from '../constants/itemInfo';
-import { Block, VisibilityOff } from '@mui/icons-material';
+import { Block } from '@mui/icons-material';
 import { Item } from './Board.type';
 import { ItemTier } from './ItemTier';
 import tierColorMap from '../constants/tierColorMap';
@@ -30,9 +30,9 @@ export function DraggableIconItem({
 
     // Special case(s) handled separately
     if (isHidden) {
-      return <VisibilityOff sx={{ color: 'gray', opacity: 0.6 }} />;
+      return <IconWrapper variant="hidden">{unwrappedIcon}</IconWrapper>;
     } else if (isInBubble) {
-      return <IconWrapper>{unwrappedIcon}</IconWrapper>;
+      return <IconWrapper variant="bubble">{unwrappedIcon}</IconWrapper>;
     } else {
       return unwrappedIcon;
     }
@@ -77,7 +77,7 @@ export function DraggableIconItem({
       >
         {getIcon(itemInfo[itemId])}
       </Box>
-      {!isHidden && <ItemTier itemLevel={itemLevel} />}
+      <ItemTier itemLevel={itemLevel} />
       {children}
     </IconButton>
   );
