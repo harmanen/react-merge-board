@@ -9,8 +9,17 @@
   width: 90%;
   aspect-ratio: 1 / 1;
   border-radius: 100%;
-  border: 1px solid blue;
-  background-color: rgba(0, 0, 255, 0.1);
+  border: min(0.1rem, 0.1vw) groove rgb(31, 81, 255);
+  background: radial-gradient(
+    farthest-corner at min(2rem, 4vw) min(1.5rem, 3vw),
+    /* White reflectionw */
+    rgba(255, 255, 255, var(--bubble-alpha)),
+    /* Blue bubble  */
+    var(--bubble-blue),
+    var(--bubble-blue),
+    var(--bubble-blue)
+  );
+  box-shadow: min(0.3rem, 0.5vw) min(0.4rem, 0.7vw) min(0.4rem, 0.7vw) gray;
   z-index: 1;
   /* Center self */
   top: 50%; 
