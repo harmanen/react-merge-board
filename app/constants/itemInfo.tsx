@@ -31,7 +31,7 @@ import {
   WifiChannel,
 } from '@mui/icons-material';
 
-interface item {
+export interface item {
   itemType: string;
   icon: JSX.Element | null;
 }

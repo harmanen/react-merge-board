@@ -1,0 +1,56 @@
+.wrapper-outer-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+.wrapper-icon-bubble,
+.wrapper-icon-hidden {
+  position: absolute;
+  width: 90%;
+  aspect-ratio: 1 / 1;
+  z-index: 1;
+  /* Center self */
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%,-50%); 
+}
+
+.wrapper-icon-bubble {
+  border-radius: 100%;
+  border: min(0.1rem, 0.1vw) groove rgb(31, 81, 255);
+  background: radial-gradient(
+    farthest-corner at min(2rem, 4vw) min(1.5rem, 3vw),
+    /* White reflectionw */
+    rgba(255, 255, 255, var(--bubble-alpha)),
+    /* Blue bubble  */
+    var(--bubble-blue),
+    var(--bubble-blue),
+    var(--bubble-blue)
+  );
+  box-shadow: min(0.3rem, 0.5vw) min(0.4rem, 0.7vw) min(0.4rem, 0.7vw) gray;
+
+}
+
+.wrapper-icon-hidden {
+  color: red;
+  /* Have to override defaults for icons for clarity...  */
+  width: 95% !important;
+  height: 95% !important;
+  opacity: 0.4;
+}
+
+.wrapper-item-container {
+  position: absolute;
+  width: 90%;
+  aspect-ratio: 1 / 1;
+  /* Center self */
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%,-50%); 
+  /* Center children */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}

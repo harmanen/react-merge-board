@@ -12,6 +12,9 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.5: Special items**
+  - Indicate if an item is hidden or in a bubble
+
 - **0.4: Board visuals**
   - Define backgrounds and borders for main layout containers and grid items
 

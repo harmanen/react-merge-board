@@ -18,7 +18,7 @@ import { DraggableIconItem } from './DraggableIconItem';
 import type Board from './Board.type';
 
 // Helper functions
-const selectBorder = (index: number, width: number, height: number) => {
+const getBorder = (index: number, width: number, height: number) => {
   // Append border to "light" grid items at the edges of the board
   // so they don't look like a part of the background but the grid.
   // Could be optimized using CSS :nth?
@@ -116,7 +116,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
               className={
                 index % 2 === 0 ? styles.gridItemDark : styles.gridItemLight
               }
-              sx={selectBorder(index, width, height)}
+              sx={getBorder(index, width, height)}
             >
               <DroppableGridItem id={gridId}>
                 {iconItem && (
@@ -124,6 +124,8 @@ export function Board({ items, width, height, gridIdList }: Board) {
                     // Generate unique ids on the fly
                     id={iconItem.uuid}
                     iconItem={iconItem}
+                    isHidden={itemsOnBoard[index]?.visibility === 'hidden'}
+                    isInBubble={itemsOnBoard[index]?.isInsideBubble}
                   />
                 )}
               </DroppableGridItem>
