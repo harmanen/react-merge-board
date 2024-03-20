@@ -125,6 +125,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
                     id={iconItem.uuid}
                     iconItem={iconItem}
                     isHidden={itemsOnBoard[index]?.visibility === 'hidden'}
+                    isInBubble={itemsOnBoard[index]?.isInsideBubble}
                   />
                 )}
               </DroppableGridItem>

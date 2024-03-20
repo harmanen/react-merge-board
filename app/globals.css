@@ -11,7 +11,7 @@
   --grid-item-border: min(0.15rem, 0.1vw) solid var(--grid-bg-dark);
   --container-border: min(0.5rem, 1vw) outset #90A4AE;
   /* Bubble icon */
-  --bubble-alpha: 0.35;
+  --bubble-alpha: 0.3;
   --bubble-blue: rgba(31, 81, 255, var(--bubble-alpha));
 }
 
