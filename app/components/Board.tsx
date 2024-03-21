@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@mui/material';
 import {
   DndContext,
@@ -7,7 +7,6 @@ import {
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
-  UniqueIdentifier,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -25,17 +24,13 @@ export function Board({
   width,
   height,
   gridIdList,
+  setActiveCellIndex,
 }: Board) {
   // Define sensor types for DnD
   const mouseSensor = useSensor(MouseSensor);
   const touchSensor = useSensor(TouchSensor);
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
-
-  // For displaying info of active cell
-  const [activeCellIndex, setActiveCellIndex] = useState<
-    UniqueIdentifier | undefined
-  >(undefined);
 
   // Handle dropping of items
   const handleDragEnd = (event: DragEndEvent) => {
