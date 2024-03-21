@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 
 export function DroppableGridItem({ id, children }: GenericProps) {
   const { isOver, setNodeRef } = useDroppable({
+    // Note that "id" is the same as the array index of the container
     id,
     data: {
       type: 'container',

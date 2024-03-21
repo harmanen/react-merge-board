@@ -5,9 +5,11 @@ import { Grid } from '@mui/material';
 import {
   DndContext,
   DragEndEvent,
+  DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
+  UniqueIdentifier,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -33,6 +35,11 @@ export function Board({ items, width, height, gridIdList }: Board) {
     ),
   );
 
+  // For displaying info of active cell
+  const [activeCellIndex, setActiveCellIndex] = useState<
+    UniqueIdentifier | undefined
+  >(undefined);
+
   // Handle dropping of items
   const handleDragEnd = (event: DragEndEvent) => {
     // Target index is the grid id
@@ -54,17 +61,21 @@ export function Board({ items, width, height, gridIdList }: Board) {
 
       setItemsOnBoard(newItems);
     }
+
+    // Update active cell
+    setActiveCellIndex(event.over?.id);
   };
 
-  // For displaying info of active cell
-  const [activeCellIndex, setActiveCellIndex] = useState<Number | undefined>(
-    undefined,
-  );
+  // Handle dragging (or clicking) of items
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveCellIndex(event.active.data.current?.index);
+  };
 
   return (
     <DndContext
       id={'board-dnd-context'}
       onDragEnd={handleDragEnd}
+      onDragStart={handleDragStart}
       sensors={sensors}
     >
       <Grid
@@ -88,8 +99,10 @@ export function Board({ items, width, height, gridIdList }: Board) {
                 index % 2 === 0 ? styles.gridItemDark : styles.gridItemLight
               }
               sx={getBorder(index, width, height)}
-              // Empty cells
-              onClick={() => setActiveCellIndex(index)}
+              // Empty cells, DndContext drag start/end defines the rest
+              onClick={() =>
+                itemsOnBoard[index] === null ? setActiveCellIndex(index) : null
+              }
             >
               <DroppableGridItem id={gridId}>
                 {iconItem && (
@@ -97,6 +110,7 @@ export function Board({ items, width, height, gridIdList }: Board) {
                     // Generate unique ids on the fly
                     id={iconItem.uuid}
                     iconItem={iconItem}
+                    index={index}
                     isHidden={itemsOnBoard[index]?.visibility === 'hidden'}
                     isInBubble={itemsOnBoard[index]?.isInsideBubble}
                   />
