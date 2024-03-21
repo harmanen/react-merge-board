@@ -1,10 +1,9 @@
 import Box from '@mui/material/Box';
 import styles from './page.module.css';
-import { Board } from './components/Board';
 
 // Replace with an API call
 import mockData from './data';
-import { InfoBox } from './components/InfoBox';
+import Content from './components/Content';
 
 // Grid size
 const { width, height } = mockData;
@@ -32,15 +31,10 @@ export default function Home() {
           width: `calc(6 * var(--layout-padding) + ${width} * var(--grid-size))`,
         }}
       >
-        <InfoBox />
-        {gridIdList && (
-          <Board
-            items={mockData.items}
-            width={width}
-            height={height}
-            gridIdList={gridIdList}
-          />
-        )}
+        <Content
+          gridIdList={gridIdList}
+          mockData={mockData}
+        />
       </Box>
     </main>
   );
