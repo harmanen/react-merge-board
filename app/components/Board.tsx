@@ -14,6 +14,8 @@ import {
 import { DroppableGridItem } from './DroppableGridItem';
 import styles from '../page.module.css';
 import { DraggableIconItem } from './DraggableIconItem';
+// Bugged
+// eslint-disable-next-line no-unused-vars
 import type Board from './Board.type';
 import getBorder from '../helpers/getBorder';
 
