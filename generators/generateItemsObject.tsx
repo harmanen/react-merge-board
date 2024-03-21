@@ -4,16 +4,10 @@
 // Used to create a dictionary for item icons
 
 // Usage (tsc needs to be installed...):
-// - Compile: tsc --resolveJsonModule --jsx react-jsx helpers/generateItemsObject.tsx
-// - Run: node helpers/generateItemsObject.js
+// - Compile: tsc --resolveJsonModule --jsx react-jsx generators/generateItemsObject.tsx
+// - Run: node generators/generateItemsObject.js
 
 import mockData from '../app/data';
-
-// const uniqueItemIds = new Set(
-//   mockData.items
-//     .filter((item) => item !== null)
-//     .reduce<Array<number>>((soFar, item) => [...soFar, item!.itemId], []),
-// );
 
 const filteredData = mockData.items.filter((item) => item !== null);
 
