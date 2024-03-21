@@ -9,7 +9,7 @@ export interface Item {
   isInsideBubble: Boolean;
 }
 
-interface ItemOnBoard extends Item {
+export interface ItemOnBoard extends Item {
   uuid: string;
 }
 

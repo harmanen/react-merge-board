@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { InfoBox } from './InfoBox';
 import { Board } from './Board';
 import { Item } from './Board.type';
-import { UniqueIdentifier } from '@dnd-kit/core';
 
 interface mockData {
   width: number;
@@ -33,13 +32,20 @@ export default function Content({ gridIdList, mockData }: Content) {
   );
 
   // For displaying info of active cell
-  const [activeCellIndex, setActiveCellIndex] = useState<
-    UniqueIdentifier | undefined
-  >(undefined);
+  const [activeCellIndex, setActiveCellIndex] = useState<Number | undefined>(
+    undefined,
+  );
 
   return (
     <>
-      <InfoBox />
+      <InfoBox
+        activeCellIndex={activeCellIndex}
+        activeItem={
+          activeCellIndex === undefined
+            ? undefined
+            : itemsOnBoard[Number(activeCellIndex)]
+        }
+      />
       {gridIdList && (
         <Board
           itemsOnBoard={itemsOnBoard}
