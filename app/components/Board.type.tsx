@@ -9,8 +9,13 @@ export interface Item {
   isInsideBubble: Boolean;
 }
 
+interface ItemOnBoard extends Item {
+  uuid: string;
+}
+
 export default interface Board {
-  items: Array<Item | null>;
+  itemsOnBoard: Array<ItemOnBoard | null>;
+  setItemsOnBoard: Function;
   width: number;
   height: number;
   gridIdList: Array<number>;

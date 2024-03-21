@@ -11,27 +11,24 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import { v4 as uuidv4 } from 'uuid';
 import { DroppableGridItem } from './DroppableGridItem';
 import styles from '../page.module.css';
 import { DraggableIconItem } from './DraggableIconItem';
 import type Board from './Board.type';
 import getBorder from '../helpers/getBorder';
 
-export function Board({ items, width, height, gridIdList }: Board) {
+export function Board({
+  itemsOnBoard,
+  setItemsOnBoard,
+  width,
+  height,
+  gridIdList,
+}: Board) {
   // Define sensor types for DnD
   const mouseSensor = useSensor(MouseSensor);
   const touchSensor = useSensor(TouchSensor);
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
-
-  // Track locations of items using component state
-  const [itemsOnBoard, setItemsOnBoard] = useState(
-    // Add uuids to data to track item movements
-    items.map((item) =>
-      item === null ? null : { ...item, uuid: uuidv4().slice(0, 8) },
-    ),
-  );
 
   // For displaying info of active cell
   const [activeCellIndex, setActiveCellIndex] = useState<
