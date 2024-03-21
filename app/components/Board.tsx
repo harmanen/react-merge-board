@@ -56,6 +56,11 @@ export function Board({ items, width, height, gridIdList }: Board) {
     }
   };
 
+  // For displaying info of active cell
+  const [activeCellIndex, setActiveCellIndex] = useState<Number | undefined>(
+    undefined,
+  );
+
   return (
     <DndContext
       id={'board-dnd-context'}
@@ -83,6 +88,8 @@ export function Board({ items, width, height, gridIdList }: Board) {
                 index % 2 === 0 ? styles.gridItemDark : styles.gridItemLight
               }
               sx={getBorder(index, width, height)}
+              // Empty cells
+              onClick={() => setActiveCellIndex(index)}
             >
               <DroppableGridItem id={gridId}>
                 {iconItem && (
