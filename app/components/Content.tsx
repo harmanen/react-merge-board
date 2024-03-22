@@ -52,6 +52,7 @@ export default function Content({ gridIdList, mockData }: Content) {
           width={width}
           height={height}
           gridIdList={gridIdList}
+          activeCellIndex={activeCellIndex}
           setActiveCellIndex={setActiveCellIndex}
         />
       )}

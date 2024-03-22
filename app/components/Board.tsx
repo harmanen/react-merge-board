@@ -22,6 +22,7 @@ export function Board({
   width,
   height,
   gridIdList,
+  activeCellIndex,
   setActiveCellIndex,
 }: Board) {
   // Define sensor types for DnD
@@ -95,7 +96,10 @@ export function Board({
                 itemsOnBoard[index] === null ? setActiveCellIndex(index) : null
               }
             >
-              <DroppableGridItem id={gridId}>
+              <DroppableGridItem
+                id={gridId}
+                activeCellIndex={activeCellIndex}
+              >
                 {iconItem && (
                   <DraggableIconItem
                     // Generate unique ids on the fly

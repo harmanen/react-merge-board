@@ -29,5 +29,6 @@ export default interface Board {
   width: number;
   height: number;
   gridIdList: Array<number>;
+  activeCellIndex: UniqueIdentifier | undefined;
   setActiveCellIndex: setActiveCellIndex;
 }
