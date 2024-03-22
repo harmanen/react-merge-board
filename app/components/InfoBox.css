@@ -9,10 +9,6 @@
   position: relative;
 }
 
-.app-title{
-  text-align: center;
-}
-
 .app-version {
   position: absolute;
   bottom: 0;

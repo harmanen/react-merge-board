@@ -14,11 +14,13 @@ export function InfoBox({ activeCellIndex, activeItem }: InfoBox) {
   return (
     <Box className="info-container">
       <Typography
-        className="app-title"
+        align="center"
         variant="h6"
       >
         Merge board
       </Typography>
+      <Typography align="center">Active cell: {activeCellIndex}</Typography>
+      <Typography>Data: {JSON.stringify(activeItem)}</Typography>
       <Typography
         className="app-version"
         variant="subtitle2"
