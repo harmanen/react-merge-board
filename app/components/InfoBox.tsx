@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import packageJSON from '../../package.json';
 import { ItemOnBoard } from './Board.type';
 import { UniqueIdentifier } from '@dnd-kit/core';
@@ -13,8 +13,16 @@ interface InfoBox {
 export function InfoBox({ activeCellIndex, activeItem }: InfoBox) {
   return (
     <Box className="info-container">
-      `THIS IS VERSION {packageJSON.version} AND VERY MUCH WORK IN PROGRESS!
-      Items can be moved around, though`
+      <Typography
+        className="title"
+        variant="h1"
+      >
+        Merge board
+      </Typography>
+      <Typography
+        className="version"
+        variant="subtitle1"
+      >{`Version ${packageJSON.version}`}</Typography>
     </Box>
   );
 }
