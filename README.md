@@ -27,3 +27,7 @@ Run locally using `npm run dev`.
 - **0.1: First iteration of the dynamic grid generation and draggable objects**
   - Items can be moved around but that's pretty much it
   - Zero effort for the visuals at this point so looks horrible (but works!)
+
+## Notes
+
+- Old version of **@typescript-eslint/eslint-plugin** needed to be installed until [NextJS is updated](https://github.com/vercel/next.js/discussions/53524) to resolve conflict with the version of @typescript-eslint/parser.
