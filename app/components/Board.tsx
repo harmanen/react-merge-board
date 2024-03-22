@@ -13,8 +13,6 @@ import {
 import { DroppableGridItem } from './DroppableGridItem';
 import styles from '../page.module.css';
 import { DraggableIconItem } from './DraggableIconItem';
-// Bugged
-// eslint-disable-next-line no-unused-vars
 import type Board from './Board.type';
 import getBorder from '../helpers/getBorder';
 
@@ -47,8 +45,9 @@ export function Board({
 
     // Update array if indices exist
     if (typeof targetIndex === 'number' && typeof sourceIndex === 'number') {
-      let newItems = [...itemsOnBoard];
+      const newItems = [...itemsOnBoard];
       newItems[sourceIndex] = targetItem;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       newItems[targetIndex] = sourceItem!;
 
       setItemsOnBoard(newItems);

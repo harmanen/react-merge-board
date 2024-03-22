@@ -16,7 +16,7 @@ if (gridSize !== mockData.items.length) {
 
 // Create list of grid ids.
 // Used to generate the board with unique droppable regions.
-let gridIdList: Array<number> = [];
+const gridIdList: Array<number> = [];
 for (let i = 0; i < gridSize; i++) {
   gridIdList.push(i);
 }

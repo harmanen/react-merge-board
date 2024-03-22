@@ -5,16 +5,15 @@ import { v4 as uuidv4 } from 'uuid';
 import { InfoBox } from './InfoBox';
 import { Board } from './Board';
 import { Item } from './Board.type';
+import { UniqueIdentifier } from '@dnd-kit/core';
 
 interface mockData {
   width: number;
   height: number;
-  boardId: String;
+  boardId: string;
   items: Array<Item | null>;
 }
 
-// Bugged
-// eslint-disable-next-line no-unused-vars
 interface Content {
   gridIdList: Array<number>;
   mockData: mockData;
@@ -32,9 +31,9 @@ export default function Content({ gridIdList, mockData }: Content) {
   );
 
   // For displaying info of active cell
-  const [activeCellIndex, setActiveCellIndex] = useState<Number | undefined>(
-    undefined,
-  );
+  const [activeCellIndex, setActiveCellIndex] = useState<
+    UniqueIdentifier | undefined
+  >(undefined);
 
   return (
     <>

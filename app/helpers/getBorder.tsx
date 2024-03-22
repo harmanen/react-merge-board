@@ -2,7 +2,7 @@ const getBorder = (index: number, width: number, height: number) => {
   // Append border to "light" grid items at the edges of the board
   // so they don't look like a part of the background but the grid.
   // Could be optimized using CSS :nth?
-  let gridItemStyles = {
+  const gridItemStyles = {
     borderTop: 'none',
     borderRight: 'none',
     borderBottom: 'none',

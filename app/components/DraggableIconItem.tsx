@@ -12,9 +12,9 @@ import IconWrapper from './IconWrapper';
 
 interface Props extends GenericProps {
   iconItem: Item;
-  index: Number;
-  isHidden: Boolean;
-  isInBubble: Boolean | undefined;
+  index: number;
+  isHidden: boolean;
+  isInBubble: boolean | undefined;
 }
 
 export function DraggableIconItem({

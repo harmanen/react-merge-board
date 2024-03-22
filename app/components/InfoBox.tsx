@@ -3,11 +3,10 @@ import { Box } from '@mui/material';
 import styles from '../page.module.css';
 import packageJSON from '../../package.json';
 import { ItemOnBoard } from './Board.type';
+import { UniqueIdentifier } from '@dnd-kit/core';
 
-// Bugged
-// eslint-disable-next-line no-unused-vars
 interface InfoBox {
-  activeCellIndex: Number | undefined;
+  activeCellIndex: UniqueIdentifier | undefined;
   activeItem: ItemOnBoard | null | undefined;
 }
 
