@@ -1,9 +1,15 @@
+import { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import styles from './page.module.css';
+import Content from './components/Content';
 
 // Replace with an API call
 import mockData from './data';
-import Content from './components/Content';
+
+export const metadata: Metadata = {
+  title: 'React merge board',
+  description: 'Proof of concept app for merge-type games',
+};
 
 // Grid size
 const { width, height } = mockData;

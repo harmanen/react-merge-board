@@ -65,13 +65,11 @@ a {
 
 .item-tier-container {
   position: absolute;
+  aspect-ratio: 1 /1;
   top: 0;
   right: 0;
   width: calc(1.5 * var(--item-tier-font-size));
   border-radius: 100%;
-}
-
-.item-tier-text {
-  font-size: var(--item-tier-font-size);
-  font-weight: 700;
+  display: flex;
+  align-items: center;
 }

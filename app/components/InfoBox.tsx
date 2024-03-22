@@ -14,15 +14,15 @@ export function InfoBox({ activeCellIndex, activeItem }: InfoBox) {
   return (
     <Box className="info-container">
       <Typography
-        className="title"
-        variant="h1"
+        className="app-title"
+        variant="h6"
       >
         Merge board
       </Typography>
       <Typography
-        className="version"
-        variant="subtitle1"
-      >{`Version ${packageJSON.version}`}</Typography>
+        className="app-version"
+        variant="subtitle2"
+      >{`(v${packageJSON.version})`}</Typography>
     </Box>
   );
 }

@@ -6,9 +6,16 @@
   height: calc(100vh / 5 - 3 * var(--layout-padding)); 
   margin: var(--layout-padding) 0;
   padding: var(--layout-padding);
+  position: relative;
 }
 
-.title,
-.version {
+.app-title{
   text-align: center;
+}
+
+.app-version {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-right: 0.25rem;
 }
