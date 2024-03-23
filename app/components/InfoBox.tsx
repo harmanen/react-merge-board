@@ -1,17 +1,36 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import packageJSON from '../../package.json';
-import { ItemOnBoard } from './Board.type';
+import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import './InfoBox.css';
 import ScaledTypography from './ScaledTypography';
 
 interface InfoBox {
   activeCellIndex: UniqueIdentifier | undefined;
+  setActiveCellIndex: setActiveCellIndex;
   activeItem: ItemOnBoard | null | undefined;
+  itemsOnBoard: Array<ItemOnBoard | null>;
+  setItemsOnBoard: setItemsOnBoard;
 }
 
-export function InfoBox({ activeCellIndex, activeItem }: InfoBox) {
+export function InfoBox({
+  activeCellIndex,
+  setActiveCellIndex,
+  activeItem,
+  itemsOnBoard,
+  setItemsOnBoard,
+}: InfoBox) {
+  const handleDelete = () => {
+    if (itemsOnBoard && activeCellIndex) {
+      const newItems = [...itemsOnBoard];
+      newItems[Number(activeCellIndex)] = null;
+
+      setItemsOnBoard(newItems);
+      setActiveCellIndex(undefined);
+    }
+  };
+
   return (
     <Box className="info-container">
       {/* Title */}
@@ -31,8 +50,25 @@ export function InfoBox({ activeCellIndex, activeItem }: InfoBox) {
         </Box>
       ) : (
         <>
-          <Typography align="center">Active cell: {activeCellIndex}</Typography>
-          <Typography>Data: {JSON.stringify(activeItem)}</Typography>
+          <Box className="button-container">
+            {activeItem === null ? (
+              <Button
+                variant="contained"
+                color="success"
+                disabled
+              >
+                Add item
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                color="error"
+                onClick={handleDelete}
+              >
+                Delete item
+              </Button>
+            )}
+          </Box>
         </>
       )}
 

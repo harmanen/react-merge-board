@@ -15,11 +15,11 @@ export interface ItemOnBoard extends Item {
   uuid: string;
 }
 
-interface setItemsOnBoard {
+export interface setItemsOnBoard {
   (newItems: Array<ItemOnBoard | null>): void;
 }
 
-interface setActiveCellIndex {
+export interface setActiveCellIndex {
   (id: UniqueIdentifier | undefined): void;
 }
 

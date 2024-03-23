@@ -70,11 +70,14 @@ export default function Content({ gridIdList, mockData }: Content) {
     >
       <InfoBox
         activeCellIndex={activeCellIndex}
+        setActiveCellIndex={setActiveCellIndex}
         activeItem={
           activeCellIndex === undefined
             ? undefined
             : itemsOnBoard[Number(activeCellIndex)]
         }
+        itemsOnBoard={itemsOnBoard}
+        setItemsOnBoard={setItemsOnBoard}
       />
       {gridIdList && (
         <Board
