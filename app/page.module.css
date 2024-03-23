@@ -4,6 +4,7 @@
   justify-content: center;
 }
 
+/* Consider moving content/grid styles somewhere more logical? */
 .contentContainer {
   display: flex;
   flex-direction: column;
