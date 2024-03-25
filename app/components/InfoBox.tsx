@@ -5,6 +5,7 @@ import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import './InfoBox.css';
 import ScaledTypography from './ScaledTypography';
+import Link from 'next/link';
 
 interface InfoBox {
   activeCellIndex: UniqueIdentifier | undefined;
@@ -39,6 +40,15 @@ export function InfoBox({
         variant="h6"
       >
         Merge board
+      </Typography>
+
+      {/* TMP */}
+      <Typography
+        variant="subtitle2"
+        align="center"
+        color="error"
+      >
+        Work in progress!
       </Typography>
 
       {/* Main content */}
@@ -76,7 +86,12 @@ export function InfoBox({
       <ScaledTypography
         className="app-version"
         variant="subtitle2"
-      >{`(v${packageJSON.version})`}</ScaledTypography>
+      >
+        <Link
+          href="https://github.com/harmanen/react-merge-board?tab=readme-ov-file#version-history"
+          target="blank"
+        >{`(v${packageJSON.version})`}</Link>
+      </ScaledTypography>
     </Box>
   );
 }
