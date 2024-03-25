@@ -48,7 +48,6 @@
     var(--grid-bg-light) 45deg 135deg,
     var(--grid-bg-dark) 135deg 180deg
   );
-  border: var(--grid-item-border)
 }
 
 .gridItemLight {

@@ -22,7 +22,10 @@ export function DroppableGridItem({ id, activeCellIndex, children }: Props) {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    border: id === activeCellIndex ? 'var(--active-cell-border)' : '',
+    border:
+      id === activeCellIndex
+        ? 'var(--active-cell-border)'
+        : 'var(--grid-item-border)',
   };
 
   return (
