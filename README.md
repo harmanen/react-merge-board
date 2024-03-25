@@ -36,3 +36,4 @@ Run locally using `npm run dev`.
 ## Notes
 
 - Old version of **@typescript-eslint/eslint-plugin** needed to be installed until [NextJS is updated](https://github.com/vercel/next.js/discussions/53524) to resolve conflict with the version of @typescript-eslint/parser.
+  - Configured on line 75 of the GitHub action workflow
