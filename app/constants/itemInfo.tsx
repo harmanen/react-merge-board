@@ -1,6 +1,6 @@
 // Ideally this data would be from some API.
 // Constructed manually this time...
-// See also helpers/generateItemsObject.tsx
+// See also generators/generateItemsObject.tsx
 
 import {
   Article,

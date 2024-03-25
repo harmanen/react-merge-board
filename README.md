@@ -12,6 +12,11 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.6: Item manipulation**
+  - Enable adding and deleting items (new form component), implement item editing in the next increment
+    - This branch was getting quite large so I decided to merge it at this point -> for now, there are some **clear bugs with small devices and touch screens**
+  - Properly configure TS linting with stricter rules
+
 - **0.5: Special items**
   - Indicate if an item is hidden or in a bubble
 
@@ -27,3 +32,7 @@ Run locally using `npm run dev`.
 - **0.1: First iteration of the dynamic grid generation and draggable objects**
   - Items can be moved around but that's pretty much it
   - Zero effort for the visuals at this point so looks horrible (but works!)
+
+## Notes
+
+- Old version of **@typescript-eslint/eslint-plugin** needed to be installed until [NextJS is updated](https://github.com/vercel/next.js/discussions/53524) to resolve conflict with the version of @typescript-eslint/parser.

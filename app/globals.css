@@ -1,18 +1,21 @@
+  /* Heuristic scaling for mobile views with min()*/
+
 :root {
-  --layout-padding: 1rem;
+  --scaled-font-size: min(1rem, 3vw);
+  --layout-padding: min(1rem, 2vw);
   --grid-size: 6.25rem;
   --icon-size: 70%;
-  /* Heuristic scaling for mobile views */
   --item-tier-font-size: min(1.5rem, 3vw);
   /* https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors */
   --grid-bg-dark: #CFD8DC;
   --grid-bg-light: #ECEFF1;
-  /* Heuristic scaling for mobile views */
   --grid-item-border: min(0.15rem, 0.1vw) solid var(--grid-bg-dark);
   --container-border: min(0.5rem, 1vw) outset #90A4AE;
+  --container-border-radius: 1rem;
   /* Bubble icon */
   --bubble-alpha: 0.3;
   --bubble-blue: rgba(31, 81, 255, var(--bubble-alpha));
+  --active-cell-border: min(0.25rem, 1vw) dashed red;
 }
 
 * {
@@ -64,13 +67,11 @@ a {
 
 .item-tier-container {
   position: absolute;
+  aspect-ratio: 1 /1;
   top: 0;
   right: 0;
   width: calc(1.5 * var(--item-tier-font-size));
   border-radius: 100%;
-}
-
-.item-tier-text {
-  font-size: var(--item-tier-font-size);
-  font-weight: 700;
+  display: flex;
+  align-items: center;
 }

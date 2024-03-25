@@ -1,10 +1,14 @@
-import Box from '@mui/material/Box';
+import { Metadata } from 'next';
 import styles from './page.module.css';
-import { Board } from './components/Board';
+import Content from './components/Content';
 
 // Replace with an API call
 import mockData from './data';
-import { InfoBox } from './components/InfoBox';
+
+export const metadata: Metadata = {
+  title: 'React merge board',
+  description: 'Proof of concept app for merge-type games',
+};
 
 // Grid size
 const { width, height } = mockData;
@@ -17,7 +21,7 @@ if (gridSize !== mockData.items.length) {
 
 // Create list of grid ids.
 // Used to generate the board with unique droppable regions.
-let gridIdList: Array<number> = [];
+const gridIdList: Array<number> = [];
 for (let i = 0; i < gridSize; i++) {
   gridIdList.push(i);
 }
@@ -25,23 +29,10 @@ for (let i = 0; i < gridSize; i++) {
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Box
-        className={styles.contentContainer}
-        // Dynamically define grid width
-        sx={{
-          width: `calc(6 * var(--layout-padding) + ${width} * var(--grid-size))`,
-        }}
-      >
-        <InfoBox />
-        {gridIdList && (
-          <Board
-            items={mockData.items}
-            width={width}
-            height={height}
-            gridIdList={gridIdList}
-          />
-        )}
-      </Box>
+      <Content
+        gridIdList={gridIdList}
+        mockData={mockData}
+      />
     </main>
   );
 }

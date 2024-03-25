@@ -14,8 +14,13 @@ export function ItemTier({ itemLevel }: Props) {
       }}
     >
       <Typography
-        className="item-tier-text"
-        style={{ color: tierColorMap[itemLevel] }}
+        align="center"
+        sx={{
+          color: tierColorMap[itemLevel],
+          fontSize: 'var(--item-tier-font-size)',
+          fontWeight: '700',
+          width: '100%',
+        }}
       >
         {itemLevel}
       </Typography>

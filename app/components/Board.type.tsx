@@ -1,3 +1,5 @@
+import { UniqueIdentifier } from '@dnd-kit/core';
+
 export interface Item {
   itemId: number;
   itemType: string;
@@ -6,12 +8,27 @@ export interface Item {
   createdAt: string;
   visibility: string;
   itemLevel: number;
-  isInsideBubble: Boolean;
+  isInsideBubble: boolean;
+}
+
+export interface ItemOnBoard extends Item {
+  uuid: string;
+}
+
+export interface setItemsOnBoard {
+  (newItems: Array<ItemOnBoard | null>): void;
+}
+
+export interface setActiveCellIndex {
+  (id: UniqueIdentifier | undefined): void;
 }
 
 export default interface Board {
-  items: Array<Item | null>;
+  itemsOnBoard: Array<ItemOnBoard | null>;
+  setItemsOnBoard: setItemsOnBoard;
   width: number;
   height: number;
   gridIdList: Array<number>;
+  activeCellIndex: UniqueIdentifier | undefined;
+  setActiveCellIndex: setActiveCellIndex;
 }

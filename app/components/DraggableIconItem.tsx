@@ -12,13 +12,15 @@ import IconWrapper from './IconWrapper';
 
 interface Props extends GenericProps {
   iconItem: Item;
-  isHidden: Boolean;
-  isInBubble: Boolean | undefined;
+  index: number;
+  isHidden: boolean;
+  isInBubble: boolean | undefined;
 }
 
 export function DraggableIconItem({
   id,
   iconItem,
+  index,
   isHidden = false,
   isInBubble = false,
   children,
@@ -45,6 +47,8 @@ export function DraggableIconItem({
     id,
     data: {
       type: 'item',
+      // Used to set active cell. Same as "id" for droppable containers
+      index: index,
     },
   });
 

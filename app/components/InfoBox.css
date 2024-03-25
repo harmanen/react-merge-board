@@ -1,0 +1,36 @@
+.info-container {
+  width: 100%;
+  background-color: var(--grid-bg-light);
+  border-radius: var(--container-border-radius);
+  border: var(--container-border);
+  height: calc(100vh / 5 - 3 * var(--layout-padding)); 
+  margin: var(--layout-padding) 0;
+  padding: var(--layout-padding);
+  position: relative;
+  min-height: 180px;
+}
+
+.app-version {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-right: 0.25rem;
+}
+
+.no-active-cell-container {
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  padding-top: 0.3rem;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: var(--layout-padding);
+}
