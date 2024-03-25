@@ -6,6 +6,7 @@ import { UniqueIdentifier } from '@dnd-kit/core';
 import './InfoBox.css';
 import ScaledTypography from './ScaledTypography';
 import Link from 'next/link';
+import ItemForm from './ItemForm';
 
 interface InfoBox {
   activeCellIndex: UniqueIdentifier | undefined;
@@ -47,6 +48,7 @@ export function InfoBox({
         variant="subtitle2"
         align="center"
         color="error"
+        sx={{ position: 'absolute', top: 0, right: 0, padding: '0.2rem' }}
       >
         Work in progress!
       </Typography>
@@ -60,16 +62,13 @@ export function InfoBox({
         </Box>
       ) : (
         <>
-          <Box className="button-container">
-            {activeItem === null ? (
-              <Button
-                variant="contained"
-                color="success"
-                disabled
-              >
-                Add item
-              </Button>
-            ) : (
+          {activeItem === null && (
+            <Box className="form-container">
+              <ItemForm />
+            </Box>
+          )}
+          {activeItem !== null && (
+            <Box className="button-container">
               <Button
                 variant="contained"
                 color="error"
@@ -77,8 +76,8 @@ export function InfoBox({
               >
                 Delete item
               </Button>
-            )}
-          </Box>
+            </Box>
+          )}
         </>
       )}
 

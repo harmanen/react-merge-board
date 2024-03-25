@@ -46,7 +46,10 @@ export default function Content({ gridIdList, mockData }: Content) {
     const handleClickOutside = (event: MouseEvent): void => {
       if (
         contentWrapperRef.current &&
-        !contentWrapperRef.current.contains(event.target as Node)
+        !contentWrapperRef.current.contains(event.target as Node) &&
+        // Additional check as the form are not there when the ref is created(?)
+        // Prevents de-selection of a cell when form is interacted with
+        (event.target as HTMLElement).tagName === 'MAIN'
       ) {
         setActiveCellIndex(undefined);
       }

@@ -7,6 +7,7 @@
   margin: var(--layout-padding) 0;
   padding: var(--layout-padding);
   position: relative;
+  min-height: 180px;
 }
 
 .app-version {
@@ -21,6 +22,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.form-container {
+  padding-top: 0.3rem;
 }
 
 .button-container {
