@@ -64,7 +64,11 @@ export function InfoBox({
         <>
           {activeItem === null && (
             <Box className="form-container">
-              <ItemForm />
+              <ItemForm
+                activeCellIndex={activeCellIndex}
+                itemsOnBoard={itemsOnBoard}
+                setItemsOnBoard={setItemsOnBoard}
+              />
             </Box>
           )}
           {activeItem !== null && (

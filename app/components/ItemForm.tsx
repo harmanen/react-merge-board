@@ -11,11 +11,24 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { SyntheticEvent, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
+import { UniqueIdentifier } from '@dnd-kit/core';
+import { ItemOnBoard, setItemsOnBoard } from './Board.type';
+
+interface ItemForm {
+  activeCellIndex: UniqueIdentifier | undefined;
+  itemsOnBoard: Array<ItemOnBoard | null>;
+  setItemsOnBoard: setItemsOnBoard;
+}
 
 const itemLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-export default function ItemForm() {
+export default function ItemForm({
+  activeCellIndex,
+  itemsOnBoard,
+  setItemsOnBoard,
+}: ItemForm) {
   const [itemType, setItemType] = useState('BroomCabinet');
   const [chainId, setChainId] = useState('BroomCabinet');
   const [itemLevel, setItemLevel] = useState(itemLevels[0].toString());
@@ -42,16 +55,24 @@ export default function ItemForm() {
     // 1 -> 01 etc.
     const itemTier = Number(itemLevel) < 10 ? `0${itemLevel}` : itemLevel;
 
-    console.log({
-      itemId: 1173,
-      itemType: `${itemType}_${itemTier}`,
-      chainId: chainId,
-      pausedUntil: null,
-      createdAt: new Date(Date.now()).toISOString(),
-      visibility: isHidden ? 'hidden' : 'visible',
-      itemLevel: itemLevel,
-      isInsideBubble: isInBubble,
-    });
+    // Update items
+    if (activeCellIndex) {
+      const newItemsOnBoard = [...itemsOnBoard];
+
+      newItemsOnBoard[activeCellIndex as number] = {
+        uuid: uuidv4().slice(0, 8),
+        itemId: 1173,
+        itemType: `${itemType}_${itemTier}`,
+        chainId: chainId,
+        pausedUntil: null,
+        createdAt: new Date(Date.now()).toISOString(),
+        visibility: isHidden ? 'hidden' : 'visible',
+        itemLevel: Number(itemLevel),
+        isInsideBubble: isInBubble,
+      };
+
+      setItemsOnBoard(newItemsOnBoard);
+    }
   };
 
   return (
@@ -167,6 +188,7 @@ export default function ItemForm() {
                 checked={isHidden}
                 onChange={() => setIsHidden(!isHidden)}
                 inputProps={{ 'aria-label': 'controlled' }}
+                disabled={isInBubble}
               />
             }
           />
@@ -177,6 +199,7 @@ export default function ItemForm() {
                 checked={isInBubble}
                 onChange={() => setIsInBubble(!isInBubble)}
                 inputProps={{ 'aria-label': 'controlled' }}
+                disabled={isHidden}
               />
             }
           />
