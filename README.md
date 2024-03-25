@@ -12,6 +12,11 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.6: Item manipulation**
+  - Enable adding and deleting items (new form component), implement item editing in the next increment
+    - This branch was getting quite large so I decided to merge it at this point -> for now, there are some **clear bugs with small devices and touch screens**
+  - Properly configure TS linting with stricter rules
+
 - **0.5: Special items**
   - Indicate if an item is hidden or in a bubble
 
