@@ -1,0 +1,5 @@
+.icon-edit-button,
+.icon-delete-button {
+  width: var(--iconbutton-icon-size)!important;
+  height: var(--iconbutton-icon-size)!important;
+}

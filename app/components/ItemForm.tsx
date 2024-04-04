@@ -5,6 +5,7 @@ import {
   FormControl,
   FormControlLabel,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -20,6 +21,8 @@ import itemInfo, {
   itemLevels,
   itemTypes,
 } from '../constants/itemInfo';
+import { Add, Check, Delete } from '@mui/icons-material';
+import './ItemForm.css';
 
 interface InitialValues {
   itemType: string;
@@ -248,27 +251,31 @@ export default function ItemForm({
               variant="contained"
               color="success"
               type="submit"
+              startIcon={<Add />}
             >
               Add item
             </Button>
           )}
           {variant === 'edit' && (
             <>
-              <Button
-                variant="contained"
+              <IconButton
                 color="success"
                 type="submit"
-                sx={{ marginRight: '0.2rem' }}
+                sx={{
+                  marginRight: '0.3rem',
+                  padding: 0,
+                }}
               >
-                Edit
-              </Button>
-              <Button
-                variant="contained"
+                <Check className="icon-edit-button" />
+              </IconButton>
+              <IconButton
                 color="error"
                 onClick={handleDelete}
+                size="large"
+                sx={{ padding: 0 }}
               >
-                Delete
-              </Button>
+                <Delete className="icon-delete-button" />
+              </IconButton>
             </>
           )}
         </Grid>
