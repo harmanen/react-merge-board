@@ -7,6 +7,7 @@ import './InfoBox.css';
 import ScaledTypography from './ScaledTypography';
 import Link from 'next/link';
 import ItemForm from './ItemForm';
+import { itemLevels } from '../constants/itemInfo';
 
 interface InfoBox {
   activeCellIndex: UniqueIdentifier | undefined;
@@ -52,7 +53,7 @@ export function InfoBox({
         </Box>
       ) : (
         <>
-          {/* Select form */}
+          {/* Select form and set initial values */}
           {activeItem === null && (
             <Box className="form-container">
               <ItemForm
@@ -60,10 +61,17 @@ export function InfoBox({
                 itemsOnBoard={itemsOnBoard}
                 setItemsOnBoard={setItemsOnBoard}
                 variant="add"
+                initialValues={{
+                  itemType: 'BroomCabinet',
+                  chainId: 'BroomCabinet',
+                  itemLevel: itemLevels[0].toString(),
+                  isHidden: false,
+                  isInBubble: false,
+                }}
               />
             </Box>
           )}
-          {activeItem !== null && (
+          {activeItem !== null && activeItem !== undefined && (
             <Box className="form-container">
               <ItemForm
                 activeCellIndex={activeCellIndex}
@@ -71,6 +79,14 @@ export function InfoBox({
                 itemsOnBoard={itemsOnBoard}
                 setItemsOnBoard={setItemsOnBoard}
                 variant="edit"
+                initialValues={{
+                  // Remove tier number from type name
+                  itemType: activeItem.itemType.split('_')[0],
+                  chainId: activeItem.chainId,
+                  itemLevel: activeItem.itemLevel.toString(),
+                  isHidden: activeItem.visibility === 'hidden',
+                  isInBubble: activeItem.isInsideBubble,
+                }}
               />
             </Box>
           )}

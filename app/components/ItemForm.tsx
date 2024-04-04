@@ -15,12 +15,21 @@ import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
-import { itemLevels } from '../constants/itemInfo';
+import { chainIds, itemLevels, itemTypes } from '../constants/itemInfo';
+
+interface InitialValues {
+  itemType: string;
+  chainId: string;
+  itemLevel: string;
+  isHidden: boolean;
+  isInBubble: boolean;
+}
 
 interface ItemForm {
   activeCellIndex: UniqueIdentifier | undefined;
   itemsOnBoard: Array<ItemOnBoard | null>;
   setItemsOnBoard: setItemsOnBoard;
+  initialValues: InitialValues;
 }
 
 interface ItemAddForm extends ItemForm {
@@ -39,12 +48,13 @@ export default function ItemForm({
   itemsOnBoard,
   setItemsOnBoard,
   variant,
+  initialValues,
 }: ItemAddForm | ItemEditForm) {
-  const [itemType, setItemType] = useState('BroomCabinet');
-  const [chainId, setChainId] = useState('BroomCabinet');
-  const [itemLevel, setItemLevel] = useState(itemLevels[0].toString());
-  const [isHidden, setIsHidden] = useState(false);
-  const [isInBubble, setIsInBubble] = useState(false);
+  const [itemType, setItemType] = useState(initialValues.itemType);
+  const [chainId, setChainId] = useState(initialValues.chainId);
+  const [itemLevel, setItemLevel] = useState(initialValues.itemLevel);
+  const [isHidden, setIsHidden] = useState(initialValues.isHidden);
+  const [isInBubble, setIsInBubble] = useState(initialValues.isInBubble);
 
   const handleChangeType = (event: SelectChangeEvent) => {
     setItemType(event.target.value as string);
@@ -96,6 +106,13 @@ export default function ItemForm({
     }
   };
 
+  // Lists for Select components
+  const itemTypesList: Array<string> =
+    variant === 'add' ? ['BroomCabinet'] : itemTypes;
+
+  const chainIdsList: Array<string> =
+    variant === 'add' ? ['BroomCabinet'] : chainIds;
+
   return (
     <Box
       component="form"
@@ -125,7 +142,14 @@ export default function ItemForm({
               value={itemType}
               onChange={handleChangeType}
             >
-              <MenuItem value="BroomCabinet">BroomCabinet</MenuItem>
+              {itemTypesList.map((item) => (
+                <MenuItem
+                  key={item}
+                  value={item}
+                >
+                  {item}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
@@ -178,7 +202,14 @@ export default function ItemForm({
               value={chainId}
               onChange={handleChangeChainId}
             >
-              <MenuItem value="BroomCabinet">BroomCabinet</MenuItem>
+              {chainIdsList.map((chainId) => (
+                <MenuItem
+                  key={chainId}
+                  value={chainId}
+                >
+                  {chainId}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
