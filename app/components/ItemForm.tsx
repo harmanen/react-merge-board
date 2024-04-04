@@ -10,7 +10,7 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
 import { UniqueIdentifier } from '@dnd-kit/core';
@@ -59,6 +59,15 @@ export default function ItemForm({
   const [itemLevel, setItemLevel] = useState(initialValues.itemLevel);
   const [isHidden, setIsHidden] = useState(initialValues.isHidden);
   const [isInBubble, setIsInBubble] = useState(initialValues.isInBubble);
+
+  // Update initial values correctly as new items are selected
+  useEffect(() => {
+    setItemType(initialValues.itemType);
+    setChainId(initialValues.chainId);
+    setItemLevel(initialValues.itemLevel);
+    setIsHidden(initialValues.isHidden);
+    setIsInBubble(initialValues.isInBubble);
+  }, [initialValues]);
 
   const handleChangeType = (event: SelectChangeEvent) => {
     setItemType(event.target.value as string);
