@@ -8,9 +8,15 @@ https://harmanen.github.io/react-merge-board/
 
 Developed using Node.js version 20.22.1 on Windows 11.
 
+Requires legacy deps, see Notes below `npm install --legacy-peer-deps`.
+
 Run locally using `npm run dev`.
 
 ## Version history
+
+- **0.7: Item editing**
+  - Modify form to be used also in editing items
+  - Fix issues related to touch screens
 
 - **0.6: Item manipulation**
   - Enable adding and deleting items (new form component), implement item editing in the next increment
