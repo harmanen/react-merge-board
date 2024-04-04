@@ -13,6 +13,37 @@ let theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
+  components: {
+    // Override font sizes
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: 'var(--scaled-font-size)',
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: 'var(--scaled-font-size)',
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          fontSize: 'var(--scaled-font-size)',
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          fontSize: 'var(--scaled-font-size)',
+        },
+      },
+    },
+  },
 });
 
 theme = responsiveFontSizes(theme);
