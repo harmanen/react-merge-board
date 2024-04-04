@@ -15,7 +15,11 @@ import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
-import { chainIds, itemLevels, itemTypes } from '../constants/itemInfo';
+import itemInfo, {
+  chainIds,
+  itemLevels,
+  itemTypes,
+} from '../constants/itemInfo';
 
 interface InitialValues {
   itemType: string;
@@ -90,9 +94,21 @@ export default function ItemForm({
     if (activeCellIndex) {
       const newItemsOnBoard = [...itemsOnBoard];
 
+      // Strictly speaking, this is incorrect!
+      // However, as the ids are used only to get the correct icon
+      // (does not depend on the item level), this is good enough...
+      // Finds the id of the first similar item on the itemInfo object.
+      const item = Object.entries(itemInfo).find(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ([id, item]) => item.itemType.split('_')[0] === itemType,
+      );
+
+      let itemId = -1;
+      if (item) itemId = Number(item[0]);
+
       newItemsOnBoard[activeCellIndex as number] = {
         uuid: uuidv4().slice(0, 8),
-        itemId: 1173,
+        itemId: Number(itemId),
         itemType: `${itemType}_${itemTier}`,
         chainId: chainId,
         pausedUntil: null,
@@ -228,13 +244,22 @@ export default function ItemForm({
             </Button>
           )}
           {variant === 'edit' && (
-            <Button
-              variant="contained"
-              color="error"
-              onClick={handleDelete}
-            >
-              Delete item
-            </Button>
+            <>
+              <Button
+                variant="contained"
+                color="success"
+                type="submit"
+              >
+                Edit
+              </Button>
+              <Button
+                variant="contained"
+                color="error"
+                onClick={handleDelete}
+              >
+                Delete
+              </Button>
+            </>
           )}
         </Grid>
         {/* Checkboxes */}
