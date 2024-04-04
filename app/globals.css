@@ -16,6 +16,8 @@
   --bubble-alpha: 0.3;
   --bubble-blue: rgba(31, 81, 255, var(--bubble-alpha));
   --active-cell-border: min(0.25rem, 1vw) dashed red;
+  /* Edit / Delete button icons  */
+  --iconbutton-icon-size: min(3rem, 8vw)
 }
 
 * {
@@ -74,4 +76,11 @@ a {
   border-radius: 100%;
   display: flex;
   align-items: center;
+}
+
+/* https://docs.dndkit.com/api-documentation/sensors/pointer#touch-action */
+.icon-button,
+.icon-container,
+.item-tier-container {
+  touch-action: none;
 }

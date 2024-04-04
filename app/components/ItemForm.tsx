@@ -5,35 +5,85 @@ import {
   FormControl,
   FormControlLabel,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
 import { UniqueIdentifier } from '@dnd-kit/core';
-import { ItemOnBoard, setItemsOnBoard } from './Board.type';
+import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
+import itemInfo, {
+  chainIds,
+  itemLevels,
+  itemTypes,
+} from '../constants/itemInfo';
+import { Add, Check, Delete } from '@mui/icons-material';
+import './ItemForm.css';
+
+interface InitialValues {
+  itemType: string;
+  chainId: string;
+  itemLevel: string;
+  isHidden: boolean;
+  isInBubble: boolean;
+}
 
 interface ItemForm {
   activeCellIndex: UniqueIdentifier | undefined;
   itemsOnBoard: Array<ItemOnBoard | null>;
   setItemsOnBoard: setItemsOnBoard;
+  initialValues: InitialValues;
 }
 
-const itemLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+interface ItemAddForm extends ItemForm {
+  variant: 'add';
+  setActiveCellIndex?: never;
+}
+
+interface ItemEditForm extends ItemForm {
+  variant: 'edit';
+  setActiveCellIndex: setActiveCellIndex;
+}
 
 export default function ItemForm({
   activeCellIndex,
+  setActiveCellIndex,
   itemsOnBoard,
   setItemsOnBoard,
-}: ItemForm) {
-  const [itemType, setItemType] = useState('BroomCabinet');
-  const [chainId, setChainId] = useState('BroomCabinet');
-  const [itemLevel, setItemLevel] = useState(itemLevels[0].toString());
-  const [isHidden, setIsHidden] = useState(false);
-  const [isInBubble, setIsInBubble] = useState(false);
+  variant,
+  initialValues,
+}: ItemAddForm | ItemEditForm) {
+  // Update initial values correctly as new items are selected
+  const [itemType, setItemType] = useState(initialValues.itemType);
+  const [chainId, setChainId] = useState(initialValues.chainId);
+  const [itemLevel, setItemLevel] = useState(initialValues.itemLevel);
+  const [isHidden, setIsHidden] = useState(initialValues.isHidden);
+  const [isInBubble, setIsInBubble] = useState(initialValues.isInBubble);
+
+  useEffect(() => {
+    setItemType(initialValues.itemType);
+    setChainId(initialValues.chainId);
+    setItemLevel(initialValues.itemLevel);
+    setIsHidden(initialValues.isHidden);
+    setIsInBubble(initialValues.isInBubble);
+  }, [initialValues]);
+
+  // Disable edit button if no changes are done
+  const [isEdited, setIsEdited] = useState(false);
+
+  useEffect(() => {
+    setIsEdited(
+      itemType !== initialValues.itemType ||
+        chainId !== initialValues.chainId ||
+        itemLevel !== initialValues.itemLevel ||
+        isHidden !== initialValues.isHidden ||
+        isInBubble !== initialValues.isInBubble,
+    );
+  }, [initialValues, itemType, chainId, itemLevel, isHidden, isInBubble]);
 
   const handleChangeType = (event: SelectChangeEvent) => {
     setItemType(event.target.value as string);
@@ -45,6 +95,16 @@ export default function ItemForm({
 
   const handleChangeLevel = (event: SelectChangeEvent) => {
     setItemLevel(event.target.value as string);
+  };
+
+  const handleDelete = () => {
+    if (itemsOnBoard && activeCellIndex && setActiveCellIndex) {
+      const newItems = [...itemsOnBoard];
+      newItems[Number(activeCellIndex)] = null;
+
+      setItemsOnBoard(newItems);
+      setActiveCellIndex(undefined);
+    }
   };
 
   const handleSubmit = (
@@ -59,9 +119,21 @@ export default function ItemForm({
     if (activeCellIndex) {
       const newItemsOnBoard = [...itemsOnBoard];
 
+      // Strictly speaking, this is incorrect!
+      // However, as the ids are used only to get the correct icon
+      // (does not depend on the item level), this is good enough...
+      // Finds the id of the first similar item on the itemInfo object.
+      const item = Object.entries(itemInfo).find(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ([id, item]) => item.itemType.split('_')[0] === itemType,
+      );
+
+      let itemId = -1;
+      if (item) itemId = Number(item[0]);
+
       newItemsOnBoard[activeCellIndex as number] = {
         uuid: uuidv4().slice(0, 8),
-        itemId: 1173,
+        itemId: Number(itemId),
         itemType: `${itemType}_${itemTier}`,
         chainId: chainId,
         pausedUntil: null,
@@ -74,6 +146,13 @@ export default function ItemForm({
       setItemsOnBoard(newItemsOnBoard);
     }
   };
+
+  // Lists for Select components
+  const itemTypesList: Array<string> =
+    variant === 'add' ? ['BroomCabinet'] : itemTypes;
+
+  const chainIdsList: Array<string> =
+    variant === 'add' ? ['BroomCabinet'] : chainIds;
 
   return (
     <Box
@@ -96,7 +175,7 @@ export default function ItemForm({
             fullWidth
             required
           >
-            <InputLabel htmlFor="input-item-type-label">Item type</InputLabel>
+            <InputLabel id="input-item-type-label">Item type</InputLabel>
             <Select
               labelId="input-item-type-label"
               id="input-item-type"
@@ -104,7 +183,14 @@ export default function ItemForm({
               value={itemType}
               onChange={handleChangeType}
             >
-              <MenuItem value="BroomCabinet">BroomCabinet</MenuItem>
+              {itemTypesList.map((item) => (
+                <MenuItem
+                  key={item}
+                  value={item}
+                >
+                  {item}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
@@ -119,7 +205,7 @@ export default function ItemForm({
             fullWidth
             required
           >
-            <InputLabel htmlFor="input-item-level-label">Item level</InputLabel>
+            <InputLabel id="input-item-level-label">Item level</InputLabel>
             <Select
               labelId="input-item-level-label"
               id="input-item-level"
@@ -149,7 +235,7 @@ export default function ItemForm({
             fullWidth
             required
           >
-            <InputLabel htmlFor="input-item-chain-label">Chain ID</InputLabel>
+            <InputLabel id="input-item-chain-label">Chain ID</InputLabel>
             <Select
               labelId="input-item-chain-label"
               id="input-item-chain"
@@ -157,29 +243,63 @@ export default function ItemForm({
               value={chainId}
               onChange={handleChangeChainId}
             >
-              <MenuItem value="BroomCabinet">BroomCabinet</MenuItem>
+              {chainIdsList.map((chainId) => (
+                <MenuItem
+                  key={chainId}
+                  value={chainId}
+                >
+                  {chainId}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
         {/* Buttons */}
         <Grid
           item
-          xs={4}
+          xs={5}
         >
-          <Box className="button-container">
+          {variant === 'add' && (
             <Button
               variant="contained"
               color="success"
               type="submit"
+              startIcon={<Add />}
             >
               Add item
             </Button>
-          </Box>
+          )}
+          {variant === 'edit' && (
+            <>
+              {/* Edit button */}
+              <IconButton
+                color="success"
+                type="submit"
+                sx={{
+                  marginRight: '0.3rem',
+                  padding: 0,
+                }}
+                disabled={!isEdited}
+              >
+                <Check className="icon-edit-button" />
+              </IconButton>
+              {/* Delete button  */}
+              <IconButton
+                color="error"
+                onClick={handleDelete}
+                size="large"
+                sx={{ padding: 0 }}
+              >
+                <Delete className="icon-delete-button" />
+              </IconButton>
+            </>
+          )}
         </Grid>
         {/* Checkboxes */}
         <Grid
           item
-          xs={8}
+          xs={7}
+          sx={{ display: 'flex', justifyContent: 'flex-end' }}
         >
           <FormControlLabel
             label="Hidden"
