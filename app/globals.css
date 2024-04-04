@@ -75,3 +75,10 @@ a {
   display: flex;
   align-items: center;
 }
+
+/* https://docs.dndkit.com/api-documentation/sensors/pointer#touch-action */
+.icon-button,
+.icon-container,
+.item-tier-container {
+  touch-action: none;
+}
