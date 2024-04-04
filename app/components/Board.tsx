@@ -1,15 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import {
-  DndContext,
-  DragEndEvent,
-  DragStartEvent,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { DroppableGridItem } from './DroppableGridItem';
 import styles from '../page.module.css';
 import { DraggableIconItem } from './DraggableIconItem';
@@ -25,12 +16,6 @@ export function Board({
   activeCellIndex,
   setActiveCellIndex,
 }: Board) {
-  // Define sensor types for DnD
-  const mouseSensor = useSensor(MouseSensor);
-  const touchSensor = useSensor(TouchSensor);
-  const keyboardSensor = useSensor(KeyboardSensor);
-  const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
-
   // Handle dropping of items
   const handleDragEnd = (event: DragEndEvent) => {
     // Target index is the grid id
@@ -68,7 +53,6 @@ export function Board({
       id={'board-dnd-context'}
       onDragEnd={handleDragEnd}
       onDragStart={handleDragStart}
-      sensors={sensors}
     >
       <Grid
         columns={width}
