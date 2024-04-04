@@ -232,7 +232,7 @@ export default function ItemForm({
         {/* Buttons */}
         <Grid
           item
-          xs={4}
+          xs={5}
         >
           {variant === 'add' && (
             <Button
@@ -249,6 +249,7 @@ export default function ItemForm({
                 variant="contained"
                 color="success"
                 type="submit"
+                sx={{ marginRight: '0.2rem' }}
               >
                 Edit
               </Button>
@@ -265,7 +266,8 @@ export default function ItemForm({
         {/* Checkboxes */}
         <Grid
           item
-          xs={8}
+          xs={7}
+          sx={{ display: 'flex', justifyContent: 'flex-end' }}
         >
           <FormControlLabel
             label="Hidden"

@@ -14,11 +14,13 @@ let theme = createTheme({
     fontFamily: roboto.style.fontFamily,
   },
   components: {
-    // Override font sizes
+    // Override font sizes etc.
     MuiButton: {
       styleOverrides: {
         root: {
           fontSize: 'var(--scaled-font-size)',
+          paddingLeft: 'var(--layout-padding)',
+          paddingRight: 'var(--layout-padding)',
         },
       },
     },
