@@ -7,7 +7,11 @@
   margin: var(--layout-padding) 0;
   padding: var(--layout-padding);
   position: relative;
-  min-height: 180px;
+  min-height: 190px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .app-version {

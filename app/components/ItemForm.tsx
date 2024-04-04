@@ -165,15 +165,13 @@ export default function ItemForm({
           item
           xs={4}
         >
-          <Box className="button-container">
-            <Button
-              variant="contained"
-              color="success"
-              type="submit"
-            >
-              Add item
-            </Button>
-          </Box>
+          <Button
+            variant="contained"
+            color="success"
+            type="submit"
+          >
+            Add item
+          </Button>
         </Grid>
         {/* Checkboxes */}
         <Grid
