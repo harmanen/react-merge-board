@@ -15,14 +15,13 @@ import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { ItemOnBoard, setItemsOnBoard } from './Board.type';
+import { itemLevels } from '../constants/itemInfo';
 
 interface ItemForm {
   activeCellIndex: UniqueIdentifier | undefined;
   itemsOnBoard: Array<ItemOnBoard | null>;
   setItemsOnBoard: setItemsOnBoard;
 }
-
-const itemLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default function ItemForm({
   activeCellIndex,
