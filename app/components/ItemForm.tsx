@@ -57,13 +57,13 @@ export default function ItemForm({
   variant,
   initialValues,
 }: ItemAddForm | ItemEditForm) {
+  // Update initial values correctly as new items are selected
   const [itemType, setItemType] = useState(initialValues.itemType);
   const [chainId, setChainId] = useState(initialValues.chainId);
   const [itemLevel, setItemLevel] = useState(initialValues.itemLevel);
   const [isHidden, setIsHidden] = useState(initialValues.isHidden);
   const [isInBubble, setIsInBubble] = useState(initialValues.isInBubble);
 
-  // Update initial values correctly as new items are selected
   useEffect(() => {
     setItemType(initialValues.itemType);
     setChainId(initialValues.chainId);
@@ -71,6 +71,19 @@ export default function ItemForm({
     setIsHidden(initialValues.isHidden);
     setIsInBubble(initialValues.isInBubble);
   }, [initialValues]);
+
+  // Disable edit button if no changes are done
+  const [isEdited, setIsEdited] = useState(false);
+
+  useEffect(() => {
+    setIsEdited(
+      itemType !== initialValues.itemType ||
+        chainId !== initialValues.chainId ||
+        itemLevel !== initialValues.itemLevel ||
+        isHidden !== initialValues.isHidden ||
+        isInBubble !== initialValues.isInBubble,
+    );
+  }, [initialValues, itemType, chainId, itemLevel, isHidden, isInBubble]);
 
   const handleChangeType = (event: SelectChangeEvent) => {
     setItemType(event.target.value as string);
@@ -258,6 +271,7 @@ export default function ItemForm({
           )}
           {variant === 'edit' && (
             <>
+              {/* Edit button */}
               <IconButton
                 color="success"
                 type="submit"
@@ -265,9 +279,11 @@ export default function ItemForm({
                   marginRight: '0.3rem',
                   padding: 0,
                 }}
+                disabled={!isEdited}
               >
                 <Check className="icon-edit-button" />
               </IconButton>
+              {/* Delete button  */}
               <IconButton
                 color="error"
                 onClick={handleDelete}
