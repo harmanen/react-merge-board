@@ -95,7 +95,7 @@ export default function ItemForm({
             fullWidth
             required
           >
-            <InputLabel htmlFor="input-item-type-label">Item type</InputLabel>
+            <InputLabel id="input-item-type-label">Item type</InputLabel>
             <Select
               labelId="input-item-type-label"
               id="input-item-type"
@@ -118,7 +118,7 @@ export default function ItemForm({
             fullWidth
             required
           >
-            <InputLabel htmlFor="input-item-level-label">Item level</InputLabel>
+            <InputLabel id="input-item-level-label">Item level</InputLabel>
             <Select
               labelId="input-item-level-label"
               id="input-item-level"
@@ -148,7 +148,7 @@ export default function ItemForm({
             fullWidth
             required
           >
-            <InputLabel htmlFor="input-item-chain-label">Chain ID</InputLabel>
+            <InputLabel id="input-item-chain-label">Chain ID</InputLabel>
             <Select
               labelId="input-item-chain-label"
               id="input-item-chain"
