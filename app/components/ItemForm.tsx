@@ -14,7 +14,7 @@ import { SyntheticEvent, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
 import { UniqueIdentifier } from '@dnd-kit/core';
-import { ItemOnBoard, setItemsOnBoard } from './Board.type';
+import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
 import { itemLevels } from '../constants/itemInfo';
 
 interface ItemForm {
@@ -23,11 +23,23 @@ interface ItemForm {
   setItemsOnBoard: setItemsOnBoard;
 }
 
+interface ItemAddForm extends ItemForm {
+  variant: 'add';
+  setActiveCellIndex?: never;
+}
+
+interface ItemEditForm extends ItemForm {
+  variant: 'edit';
+  setActiveCellIndex: setActiveCellIndex;
+}
+
 export default function ItemForm({
   activeCellIndex,
+  setActiveCellIndex,
   itemsOnBoard,
   setItemsOnBoard,
-}: ItemForm) {
+  variant,
+}: ItemAddForm | ItemEditForm) {
   const [itemType, setItemType] = useState('BroomCabinet');
   const [chainId, setChainId] = useState('BroomCabinet');
   const [itemLevel, setItemLevel] = useState(itemLevels[0].toString());
@@ -44,6 +56,16 @@ export default function ItemForm({
 
   const handleChangeLevel = (event: SelectChangeEvent) => {
     setItemLevel(event.target.value as string);
+  };
+
+  const handleDelete = () => {
+    if (itemsOnBoard && activeCellIndex && setActiveCellIndex) {
+      const newItems = [...itemsOnBoard];
+      newItems[Number(activeCellIndex)] = null;
+
+      setItemsOnBoard(newItems);
+      setActiveCellIndex(undefined);
+    }
   };
 
   const handleSubmit = (
@@ -165,13 +187,24 @@ export default function ItemForm({
           item
           xs={4}
         >
-          <Button
-            variant="contained"
-            color="success"
-            type="submit"
-          >
-            Add item
-          </Button>
+          {variant === 'add' && (
+            <Button
+              variant="contained"
+              color="success"
+              type="submit"
+            >
+              Add item
+            </Button>
+          )}
+          {variant === 'edit' && (
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleDelete}
+            >
+              Delete item
+            </Button>
+          )}
         </Grid>
         {/* Checkboxes */}
         <Grid

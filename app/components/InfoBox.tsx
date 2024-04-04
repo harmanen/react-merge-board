@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import packageJSON from '../../package.json';
 import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
 import { UniqueIdentifier } from '@dnd-kit/core';
@@ -23,16 +23,6 @@ export function InfoBox({
   itemsOnBoard,
   setItemsOnBoard,
 }: InfoBox) {
-  const handleDelete = () => {
-    if (itemsOnBoard && activeCellIndex) {
-      const newItems = [...itemsOnBoard];
-      newItems[Number(activeCellIndex)] = null;
-
-      setItemsOnBoard(newItems);
-      setActiveCellIndex(undefined);
-    }
-  };
-
   return (
     <Box className="info-container">
       {/* Title */}
@@ -62,24 +52,26 @@ export function InfoBox({
         </Box>
       ) : (
         <>
+          {/* Select form */}
           {activeItem === null && (
             <Box className="form-container">
               <ItemForm
                 activeCellIndex={activeCellIndex}
                 itemsOnBoard={itemsOnBoard}
                 setItemsOnBoard={setItemsOnBoard}
+                variant="add"
               />
             </Box>
           )}
           {activeItem !== null && (
-            <Box className="button-container">
-              <Button
-                variant="contained"
-                color="error"
-                onClick={handleDelete}
-              >
-                Delete item
-              </Button>
+            <Box className="form-container">
+              <ItemForm
+                activeCellIndex={activeCellIndex}
+                setActiveCellIndex={setActiveCellIndex}
+                itemsOnBoard={itemsOnBoard}
+                setItemsOnBoard={setItemsOnBoard}
+                variant="edit"
+              />
             </Box>
           )}
         </>
