@@ -91,8 +91,8 @@ export function Board({
                 index % 2 === 0 ? styles.gridItemDark : styles.gridItemLight
               }
               sx={getBorder(index, width, height)}
-              // Empty cells, DndContext drag start/end defines the rest
-              onClick={() =>
+              // Select active cell
+              onPointerDown={() =>
                 itemsOnBoard[index] === null ? setActiveCellIndex(index) : null
               }
             >
