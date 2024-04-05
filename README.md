@@ -14,6 +14,9 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.8: Item editing**
+  - Fix [Issue #8](https://github.com/harmanen/react-merge-board/issues/8)
+
 - **0.7: Item editing**
   - Modify form to be used also in editing items
   - Fix issues related to touch screens
