@@ -18,34 +18,38 @@ export function Board({
 }: Board) {
   // Handle dropping of items
   const handleDragEnd = (event: DragEndEvent) => {
-    // Target index is the grid id
-    const targetIndex = event.over?.id;
-    const targetItem = itemsOnBoard[targetIndex as number];
+    if (event.over && event.active) {
+      // Target index is the grid id
+      const targetIndex = event.over?.id;
+      const targetItem = itemsOnBoard[targetIndex as number];
 
-    // Find source index with the item uuid
-    const sourceItem = itemsOnBoard.find(
-      (item) => item?.uuid === event.active.id,
-    );
+      // Find source index with the item uuid
+      const sourceItem = itemsOnBoard.find(
+        (item) => item?.uuid === event.active.id,
+      );
 
-    const sourceIndex = sourceItem && itemsOnBoard.indexOf(sourceItem);
+      const sourceIndex = sourceItem && itemsOnBoard.indexOf(sourceItem);
 
-    // Update array if indices exist
-    if (typeof targetIndex === 'number' && typeof sourceIndex === 'number') {
-      const newItems = [...itemsOnBoard];
-      newItems[sourceIndex] = targetItem;
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      newItems[targetIndex] = sourceItem!;
+      // Update array if indices exist
+      if (typeof targetIndex === 'number' && typeof sourceIndex === 'number') {
+        const newItems = [...itemsOnBoard];
+        newItems[sourceIndex] = targetItem;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        newItems[targetIndex] = sourceItem!;
 
-      setItemsOnBoard(newItems);
+        setItemsOnBoard(newItems);
+      }
+
+      // Update active cell
+      setActiveCellIndex(event.over?.id);
     }
-
-    // Update active cell
-    setActiveCellIndex(event.over?.id);
   };
 
   // Handle dragging (or clicking) of items
   const handleDragStart = (event: DragStartEvent) => {
-    setActiveCellIndex(event.active.data.current?.index);
+    if (event.active) {
+      setActiveCellIndex(event.active.data.current?.index);
+    }
   };
 
   return (
