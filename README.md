@@ -14,7 +14,7 @@ Run locally using `npm run dev`.
 
 ## Version history
 
-- **0.8: Item editing**
+- **0.8: Hotfix**
   - Fix [Issue #8](https://github.com/harmanen/react-merge-board/issues/8)
 
 - **0.7: Item editing**
