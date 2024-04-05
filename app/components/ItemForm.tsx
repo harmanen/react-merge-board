@@ -98,7 +98,9 @@ export default function ItemForm({
   };
 
   const handleDelete = () => {
-    if (itemsOnBoard && activeCellIndex && setActiveCellIndex) {
+    // Index to string as 0 is falsy
+    if (itemsOnBoard && activeCellIndex?.toString() && setActiveCellIndex) {
+      console.log('if');
       const newItems = [...itemsOnBoard];
       newItems[Number(activeCellIndex)] = null;
 
@@ -116,7 +118,8 @@ export default function ItemForm({
     const itemTier = Number(itemLevel) < 10 ? `0${itemLevel}` : itemLevel;
 
     // Update items
-    if (activeCellIndex) {
+    // Index to string as 0 is falsy
+    if (activeCellIndex?.toString()) {
       const newItemsOnBoard = [...itemsOnBoard];
 
       // Strictly speaking, this is incorrect!
