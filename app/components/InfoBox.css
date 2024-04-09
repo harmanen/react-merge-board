@@ -7,11 +7,18 @@
   margin: var(--layout-padding) 0;
   padding: var(--layout-padding);
   position: relative;
-  min-height: 190px;
+  min-height: 250px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+/* Use a breakpoint to scale infoBox height */
+@media only screen and (max-width: 600px) {
+  .info-container {
+    min-height: 200px;
+  }
 }
 
 .app-version {

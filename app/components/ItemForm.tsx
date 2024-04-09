@@ -10,8 +10,9 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  TextField,
 } from '@mui/material';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
 import { UniqueIdentifier } from '@dnd-kit/core';
@@ -30,6 +31,8 @@ interface InitialValues {
   itemLevel: string;
   isHidden: boolean;
   isInBubble: boolean;
+  pausedUntil: string | null;
+  createdAt?: string;
 }
 
 interface ItemForm {
@@ -63,6 +66,8 @@ export default function ItemForm({
   const [itemLevel, setItemLevel] = useState(initialValues.itemLevel);
   const [isHidden, setIsHidden] = useState(initialValues.isHidden);
   const [isInBubble, setIsInBubble] = useState(initialValues.isInBubble);
+  const [createdAt, setCreatedAt] = useState(initialValues.createdAt);
+  const [pausedUntil, setPausedUntil] = useState(initialValues.pausedUntil);
 
   useEffect(() => {
     setItemType(initialValues.itemType);
@@ -70,6 +75,8 @@ export default function ItemForm({
     setItemLevel(initialValues.itemLevel);
     setIsHidden(initialValues.isHidden);
     setIsInBubble(initialValues.isInBubble);
+    setCreatedAt(initialValues.createdAt);
+    setPausedUntil(initialValues.pausedUntil);
   }, [initialValues]);
 
   // Disable edit button if no changes are done
@@ -81,9 +88,20 @@ export default function ItemForm({
         chainId !== initialValues.chainId ||
         itemLevel !== initialValues.itemLevel ||
         isHidden !== initialValues.isHidden ||
-        isInBubble !== initialValues.isInBubble,
+        isInBubble !== initialValues.isInBubble ||
+        createdAt !== initialValues.createdAt ||
+        pausedUntil !== initialValues.pausedUntil,
     );
-  }, [initialValues, itemType, chainId, itemLevel, isHidden, isInBubble]);
+  }, [
+    initialValues,
+    itemType,
+    chainId,
+    itemLevel,
+    isHidden,
+    isInBubble,
+    createdAt,
+    pausedUntil,
+  ]);
 
   const handleChangeType = (event: SelectChangeEvent) => {
     setItemType(event.target.value as string);
@@ -96,6 +114,16 @@ export default function ItemForm({
   const handleChangeLevel = (event: SelectChangeEvent) => {
     setItemLevel(event.target.value as string);
   };
+
+  const handleChangeCreatedAt = (event: ChangeEvent<HTMLInputElement>) => {
+    setCreatedAt(event.target.value as string);
+  };
+
+  const handleChangePausedUntil = (event: ChangeEvent<HTMLInputElement>) => {
+    setPausedUntil(event.target.value as string);
+  };
+
+  console.log(pausedUntil);
 
   const handleDelete = () => {
     // Index to string as 0 is falsy
@@ -138,7 +166,7 @@ export default function ItemForm({
         itemId: Number(itemId),
         itemType: `${itemType}_${itemTier}`,
         chainId: chainId,
-        pausedUntil: null,
+        pausedUntil: pausedUntil ? pausedUntil : null,
         createdAt: new Date(Date.now()).toISOString(),
         visibility: isHidden ? 'hidden' : 'visible',
         itemLevel: Number(itemLevel),
@@ -255,6 +283,38 @@ export default function ItemForm({
               ))}
             </Select>
           </FormControl>
+        </Grid>
+        {/* Time fields  */}
+        <Grid
+          item
+          xs={6}
+        >
+          <TextField
+            id="input-paused-until"
+            label="Paused until"
+            value={pausedUntil || ''}
+            onChange={handleChangePausedUntil}
+            size="small"
+            fullWidth
+          />
+        </Grid>
+        <Grid
+          item
+          xs={6}
+        >
+          <TextField
+            disabled
+            id="input-created-at"
+            label={
+              variant === 'add'
+                ? 'Created at (fills in automatically)'
+                : 'Created at'
+            }
+            value={createdAt || ''}
+            onChange={handleChangeCreatedAt}
+            size="small"
+            fullWidth
+          />
         </Grid>
         {/* Buttons */}
         <Grid
