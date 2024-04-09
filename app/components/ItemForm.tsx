@@ -161,7 +161,10 @@ export default function ItemForm({
         itemId: Number(itemId),
         itemType: `${itemType}_${itemTier}`,
         chainId: chainId,
-        pausedUntil: pausedUntil.toISOString(),
+        // Check for dayjs object without date
+        pausedUntil: Number.isNaN(pausedUntil.get('year'))
+          ? null
+          : pausedUntil.toISOString(),
         createdAt: new Date(Date.now()).toISOString(),
         visibility: isHidden ? 'hidden' : 'visible',
         itemLevel: Number(itemLevel),
