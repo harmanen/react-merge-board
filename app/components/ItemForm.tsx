@@ -100,7 +100,6 @@ export default function ItemForm({
   const handleDelete = () => {
     // Index to string as 0 is falsy
     if (itemsOnBoard && activeCellIndex?.toString() && setActiveCellIndex) {
-      console.log('if');
       const newItems = [...itemsOnBoard];
       newItems[Number(activeCellIndex)] = null;
 
