@@ -10,9 +10,8 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-  TextField,
 } from '@mui/material';
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
 import { UniqueIdentifier } from '@dnd-kit/core';
@@ -24,6 +23,9 @@ import itemInfo, {
 } from '../constants/itemInfo';
 import { Add, Check, Delete } from '@mui/icons-material';
 import './ItemForm.css';
+import { DateTimeField } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
+import { dateFormat } from '../constants/formats';
 
 interface InitialValues {
   itemType: string;
@@ -61,13 +63,16 @@ export default function ItemForm({
   initialValues,
 }: ItemAddForm | ItemEditForm) {
   // Update initial values correctly as new items are selected
+  // Dates are stored as dayjs objects in the state
   const [itemType, setItemType] = useState(initialValues.itemType);
   const [chainId, setChainId] = useState(initialValues.chainId);
   const [itemLevel, setItemLevel] = useState(initialValues.itemLevel);
   const [isHidden, setIsHidden] = useState(initialValues.isHidden);
   const [isInBubble, setIsInBubble] = useState(initialValues.isInBubble);
-  const [createdAt, setCreatedAt] = useState(initialValues.createdAt);
-  const [pausedUntil, setPausedUntil] = useState(initialValues.pausedUntil);
+  const [createdAt, setCreatedAt] = useState(dayjs(initialValues.createdAt));
+  const [pausedUntil, setPausedUntil] = useState(
+    dayjs(initialValues.pausedUntil),
+  );
 
   useEffect(() => {
     setItemType(initialValues.itemType);
@@ -75,8 +80,8 @@ export default function ItemForm({
     setItemLevel(initialValues.itemLevel);
     setIsHidden(initialValues.isHidden);
     setIsInBubble(initialValues.isInBubble);
-    setCreatedAt(initialValues.createdAt);
-    setPausedUntil(initialValues.pausedUntil);
+    setCreatedAt(dayjs(initialValues.createdAt));
+    setPausedUntil(dayjs(initialValues.pausedUntil));
   }, [initialValues]);
 
   // Disable edit button if no changes are done
@@ -89,8 +94,8 @@ export default function ItemForm({
         itemLevel !== initialValues.itemLevel ||
         isHidden !== initialValues.isHidden ||
         isInBubble !== initialValues.isInBubble ||
-        createdAt !== initialValues.createdAt ||
-        pausedUntil !== initialValues.pausedUntil,
+        createdAt.toString() !== dayjs(initialValues.createdAt).toString() ||
+        pausedUntil.toString() !== dayjs(initialValues.pausedUntil).toString(),
     );
   }, [
     initialValues,
@@ -114,16 +119,6 @@ export default function ItemForm({
   const handleChangeLevel = (event: SelectChangeEvent) => {
     setItemLevel(event.target.value as string);
   };
-
-  const handleChangeCreatedAt = (event: ChangeEvent<HTMLInputElement>) => {
-    setCreatedAt(event.target.value as string);
-  };
-
-  const handleChangePausedUntil = (event: ChangeEvent<HTMLInputElement>) => {
-    setPausedUntil(event.target.value as string);
-  };
-
-  console.log(pausedUntil);
 
   const handleDelete = () => {
     // Index to string as 0 is falsy
@@ -166,7 +161,7 @@ export default function ItemForm({
         itemId: Number(itemId),
         itemType: `${itemType}_${itemTier}`,
         chainId: chainId,
-        pausedUntil: pausedUntil ? pausedUntil : null,
+        pausedUntil: pausedUntil.toISOString(),
         createdAt: new Date(Date.now()).toISOString(),
         visibility: isHidden ? 'hidden' : 'visible',
         itemLevel: Number(itemLevel),
@@ -289,31 +284,38 @@ export default function ItemForm({
           item
           xs={6}
         >
-          <TextField
+          <DateTimeField
             id="input-paused-until"
             label="Paused until"
-            value={pausedUntil || ''}
-            onChange={handleChangePausedUntil}
+            value={pausedUntil}
+            onChange={(newValue) => newValue && setPausedUntil(newValue)}
             size="small"
+            format={dateFormat}
             fullWidth
+            slotProps={{
+              textField: {
+                error: false,
+              },
+            }}
           />
         </Grid>
         <Grid
           item
           xs={6}
         >
-          <TextField
-            disabled
+          <DateTimeField
             id="input-created-at"
             label={
               variant === 'add'
                 ? 'Created at (fills in automatically)'
                 : 'Created at'
             }
-            value={createdAt || ''}
-            onChange={handleChangeCreatedAt}
+            value={createdAt}
+            onChange={(newValue) => newValue && setPausedUntil(newValue)}
             size="small"
+            format={dateFormat}
             fullWidth
+            disabled
           />
         </Grid>
         {/* Buttons */}
