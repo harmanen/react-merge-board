@@ -165,7 +165,11 @@ export default function ItemForm({
         pausedUntil: Number.isNaN(pausedUntil.get('year'))
           ? null
           : pausedUntil.toISOString(),
-        createdAt: new Date(Date.now()).toISOString(),
+        // Generate date only for add form
+        createdAt:
+          variant === 'add'
+            ? new Date(Date.now()).toISOString()
+            : createdAt.toISOString(),
         visibility: isHidden ? 'hidden' : 'visible',
         itemLevel: Number(itemLevel),
         isInsideBubble: isInBubble,
@@ -313,7 +317,7 @@ export default function ItemForm({
                 ? 'Created at (fills in automatically)'
                 : 'Created at'
             }
-            value={createdAt}
+            value={variant === 'add' ? null : createdAt}
             onChange={(newValue) => newValue && setPausedUntil(newValue)}
             size="small"
             format={dateFormat}
