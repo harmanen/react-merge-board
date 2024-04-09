@@ -169,7 +169,7 @@ export default function ItemForm({
         {/* Item type */}
         <Grid
           item
-          xs={4}
+          xs={5}
         >
           <FormControl
             variant="outlined"
@@ -199,7 +199,7 @@ export default function ItemForm({
         {/* Item level */}
         <Grid
           item
-          xs={4}
+          xs={3}
         >
           <FormControl
             variant="outlined"
@@ -207,11 +207,11 @@ export default function ItemForm({
             fullWidth
             required
           >
-            <InputLabel id="input-item-level-label">Item level</InputLabel>
+            <InputLabel id="input-item-level-label">Level</InputLabel>
             <Select
               labelId="input-item-level-label"
               id="input-item-level"
-              label="Item level"
+              label="Level"
               value={itemLevel}
               onChange={handleChangeLevel}
             >
