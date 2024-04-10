@@ -38,10 +38,3 @@
 .form-container {
   padding-top: 0.3rem;
 }
-
-.button-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: var(--layout-padding);
-}
