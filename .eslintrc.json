@@ -15,7 +15,8 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "no-unused-expressions": "warn",
-    "no-unused-labels": "warn"
+    "no-unused-labels": "warn",
+    "no-console": "warn"
   },
   "env": {
     "browser": true,

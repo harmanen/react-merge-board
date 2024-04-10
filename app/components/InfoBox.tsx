@@ -67,6 +67,7 @@ export function InfoBox({
                   itemLevel: itemLevels[0].toString(),
                   isHidden: false,
                   isInBubble: false,
+                  pausedUntil: null,
                 }}
               />
             </Box>
@@ -86,6 +87,8 @@ export function InfoBox({
                   itemLevel: activeItem.itemLevel.toString(),
                   isHidden: activeItem.visibility === 'hidden',
                   isInBubble: activeItem.isInsideBubble,
+                  pausedUntil: activeItem.pausedUntil,
+                  createdAt: activeItem.createdAt,
                 }}
               />
             </Box>

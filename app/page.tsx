@@ -16,6 +16,8 @@ const gridSize = width * height;
 
 // Sanity check
 if (gridSize !== mockData.items.length) {
+  // Replace with error?
+  // eslint-disable-next-line no-console
   console.warn('Amount of items does not match the grid!');
 }
 

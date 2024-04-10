@@ -23,6 +23,9 @@ import itemInfo, {
 } from '../constants/itemInfo';
 import { Add, Check, Delete } from '@mui/icons-material';
 import './ItemForm.css';
+import { DateTimeField } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
+import { dateFormat } from '../constants/formats';
 
 interface InitialValues {
   itemType: string;
@@ -30,6 +33,8 @@ interface InitialValues {
   itemLevel: string;
   isHidden: boolean;
   isInBubble: boolean;
+  pausedUntil: string | null;
+  createdAt?: string;
 }
 
 interface ItemForm {
@@ -58,11 +63,16 @@ export default function ItemForm({
   initialValues,
 }: ItemAddForm | ItemEditForm) {
   // Update initial values correctly as new items are selected
+  // Dates are stored as dayjs objects in the state
   const [itemType, setItemType] = useState(initialValues.itemType);
   const [chainId, setChainId] = useState(initialValues.chainId);
   const [itemLevel, setItemLevel] = useState(initialValues.itemLevel);
   const [isHidden, setIsHidden] = useState(initialValues.isHidden);
   const [isInBubble, setIsInBubble] = useState(initialValues.isInBubble);
+  const [createdAt, setCreatedAt] = useState(dayjs(initialValues.createdAt));
+  const [pausedUntil, setPausedUntil] = useState(
+    dayjs(initialValues.pausedUntil),
+  );
 
   useEffect(() => {
     setItemType(initialValues.itemType);
@@ -70,6 +80,8 @@ export default function ItemForm({
     setItemLevel(initialValues.itemLevel);
     setIsHidden(initialValues.isHidden);
     setIsInBubble(initialValues.isInBubble);
+    setCreatedAt(dayjs(initialValues.createdAt));
+    setPausedUntil(dayjs(initialValues.pausedUntil));
   }, [initialValues]);
 
   // Disable edit button if no changes are done
@@ -81,9 +93,20 @@ export default function ItemForm({
         chainId !== initialValues.chainId ||
         itemLevel !== initialValues.itemLevel ||
         isHidden !== initialValues.isHidden ||
-        isInBubble !== initialValues.isInBubble,
+        isInBubble !== initialValues.isInBubble ||
+        createdAt.toString() !== dayjs(initialValues.createdAt).toString() ||
+        pausedUntil.toString() !== dayjs(initialValues.pausedUntil).toString(),
     );
-  }, [initialValues, itemType, chainId, itemLevel, isHidden, isInBubble]);
+  }, [
+    initialValues,
+    itemType,
+    chainId,
+    itemLevel,
+    isHidden,
+    isInBubble,
+    createdAt,
+    pausedUntil,
+  ]);
 
   const handleChangeType = (event: SelectChangeEvent) => {
     setItemType(event.target.value as string);
@@ -100,7 +123,6 @@ export default function ItemForm({
   const handleDelete = () => {
     // Index to string as 0 is falsy
     if (itemsOnBoard && activeCellIndex?.toString() && setActiveCellIndex) {
-      console.log('if');
       const newItems = [...itemsOnBoard];
       newItems[Number(activeCellIndex)] = null;
 
@@ -139,8 +161,15 @@ export default function ItemForm({
         itemId: Number(itemId),
         itemType: `${itemType}_${itemTier}`,
         chainId: chainId,
-        pausedUntil: null,
-        createdAt: new Date(Date.now()).toISOString(),
+        // Check for dayjs object without date
+        pausedUntil: Number.isNaN(pausedUntil.get('year'))
+          ? null
+          : pausedUntil.toISOString(),
+        // Generate date only for add form
+        createdAt:
+          variant === 'add'
+            ? new Date(Date.now()).toISOString()
+            : createdAt.toISOString(),
         visibility: isHidden ? 'hidden' : 'visible',
         itemLevel: Number(itemLevel),
         isInsideBubble: isInBubble,
@@ -170,7 +199,7 @@ export default function ItemForm({
         {/* Item type */}
         <Grid
           item
-          xs={4}
+          xs={5}
         >
           <FormControl
             variant="outlined"
@@ -200,7 +229,7 @@ export default function ItemForm({
         {/* Item level */}
         <Grid
           item
-          xs={4}
+          xs={3}
         >
           <FormControl
             variant="outlined"
@@ -208,11 +237,11 @@ export default function ItemForm({
             fullWidth
             required
           >
-            <InputLabel id="input-item-level-label">Item level</InputLabel>
+            <InputLabel id="input-item-level-label">Level</InputLabel>
             <Select
               labelId="input-item-level-label"
               id="input-item-level"
-              label="Item level"
+              label="Level"
               value={itemLevel}
               onChange={handleChangeLevel}
             >
@@ -256,6 +285,45 @@ export default function ItemForm({
               ))}
             </Select>
           </FormControl>
+        </Grid>
+        {/* Time fields  */}
+        <Grid
+          item
+          xs={6}
+        >
+          <DateTimeField
+            id="input-paused-until"
+            label="Paused until"
+            value={pausedUntil}
+            onChange={(newValue) => newValue && setPausedUntil(newValue)}
+            size="small"
+            format={dateFormat}
+            fullWidth
+            slotProps={{
+              textField: {
+                error: false,
+              },
+            }}
+          />
+        </Grid>
+        <Grid
+          item
+          xs={6}
+        >
+          <DateTimeField
+            id="input-created-at"
+            label={
+              variant === 'add'
+                ? 'Created at (fills in automatically)'
+                : 'Created at'
+            }
+            value={variant === 'add' ? null : createdAt}
+            onChange={(newValue) => newValue && setPausedUntil(newValue)}
+            size="small"
+            format={dateFormat}
+            fullWidth
+            disabled
+          />
         </Grid>
         {/* Buttons */}
         <Grid
