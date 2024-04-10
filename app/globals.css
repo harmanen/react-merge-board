@@ -17,7 +17,7 @@
   --bubble-blue: rgba(31, 81, 255, var(--bubble-alpha));
   --active-cell-border: min(0.25rem, 1vw) dashed red;
   /* Edit / Delete button icons  */
-  --iconbutton-icon-size: min(3rem, 8vw)
+  --iconbutton-icon-size: min(2.5rem, 8vw)
 }
 
 * {
