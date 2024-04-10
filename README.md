@@ -14,6 +14,11 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.9: Time fields**
+  - Add time fields `createdAt` (read only) and `pausedUntil` (editable) to form
+  - Install MUI package for date picker component
+  - Install dayjs to handle dates and times
+
 - **0.8: Hotfix**
   - Fix [Issue #8](https://github.com/harmanen/react-merge-board/issues/8)
 
