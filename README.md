@@ -14,6 +14,10 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.11: Implement backlog issues**
+  - Fix [Issue #12](https://github.com/harmanen/react-merge-board/issues/12)
+  - Fix [Issue #9](https://github.com/harmanen/react-merge-board/issues/9)
+
 - **0.10: Highlight chainable items**
   - Add highlight background color for cells with same `chainId` as the active item
   - Highlight default `chainId` in Select component options of the form

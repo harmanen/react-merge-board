@@ -122,6 +122,7 @@ export function Board({
                     index={index}
                     isHidden={iconItem?.visibility === 'hidden'}
                     isInBubble={iconItem?.isInsideBubble}
+                    isActive={index === activeCellIndex}
                   />
                 )}
               </DroppableGridItem>

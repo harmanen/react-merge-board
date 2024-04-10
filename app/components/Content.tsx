@@ -62,6 +62,22 @@ export default function Content({ gridIdList, mockData }: Content) {
     };
   }, [contentWrapperRef]);
 
+  // Check if mobile width
+  // Used to set "dense" MenuItems
+  const limitForMobile = 768;
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleWindowSizeChange = () => {
+    setIsMobile(window.innerWidth <= limitForMobile);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
   return (
     <Box
       className={styles.contentContainer}
@@ -81,6 +97,7 @@ export default function Content({ gridIdList, mockData }: Content) {
         }
         itemsOnBoard={itemsOnBoard}
         setItemsOnBoard={setItemsOnBoard}
+        isMobile={isMobile}
       />
       {gridIdList && (
         <Board

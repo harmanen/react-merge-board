@@ -15,6 +15,7 @@ interface InfoBox {
   activeItem: ItemOnBoard | null | undefined;
   itemsOnBoard: Array<ItemOnBoard | null>;
   setItemsOnBoard: setItemsOnBoard;
+  isMobile: boolean;
 }
 
 export function InfoBox({
@@ -23,6 +24,7 @@ export function InfoBox({
   activeItem,
   itemsOnBoard,
   setItemsOnBoard,
+  isMobile,
 }: InfoBox) {
   return (
     <Box className="info-container">
@@ -61,6 +63,7 @@ export function InfoBox({
                 itemsOnBoard={itemsOnBoard}
                 setItemsOnBoard={setItemsOnBoard}
                 variant="add"
+                isMobile={isMobile}
                 initialValues={{
                   itemType: 'BroomCabinet',
                   chainId: 'BroomCabinet',
@@ -80,6 +83,7 @@ export function InfoBox({
                 itemsOnBoard={itemsOnBoard}
                 setItemsOnBoard={setItemsOnBoard}
                 variant="edit"
+                isMobile={isMobile}
                 initialValues={{
                   // Remove tier number from type name
                   itemType: activeItem.itemType.split('_')[0],

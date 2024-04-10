@@ -42,6 +42,7 @@ interface ItemForm {
   itemsOnBoard: Array<ItemOnBoard | null>;
   setItemsOnBoard: setItemsOnBoard;
   initialValues: InitialValues;
+  isMobile: boolean;
 }
 
 interface ItemAddForm extends ItemForm {
@@ -60,6 +61,7 @@ export default function ItemForm({
   itemsOnBoard,
   setItemsOnBoard,
   variant,
+  isMobile,
   initialValues,
 }: ItemAddForm | ItemEditForm) {
   // Update initial values correctly as new items are selected
@@ -219,6 +221,8 @@ export default function ItemForm({
                 <MenuItem
                   key={item}
                   value={item}
+                  dense={isMobile}
+                  sx={{ fontSize: 'var(--scaled-font-size)' }}
                 >
                   {item}
                 </MenuItem>
@@ -249,6 +253,8 @@ export default function ItemForm({
                 <MenuItem
                   key={level}
                   value={level}
+                  dense={isMobile}
+                  sx={{ fontSize: 'var(--scaled-font-size)' }}
                 >
                   {level}
                 </MenuItem>
@@ -283,7 +289,11 @@ export default function ItemForm({
                   <MenuItem
                     key={chainId}
                     value={chainId}
-                    sx={{ fontWeight: isDefaultChainable ? '700' : 'inherit' }}
+                    dense={isMobile}
+                    sx={{
+                      fontWeight: isDefaultChainable ? '700' : 'inherit',
+                      fontSize: 'var(--scaled-font-size)',
+                    }}
                   >
                     {isDefaultChainable ? `${chainId} (default)` : chainId}
                   </MenuItem>
