@@ -275,14 +275,20 @@ export default function ItemForm({
               value={chainId}
               onChange={handleChangeChainId}
             >
-              {chainIdsList.map((chainId) => (
-                <MenuItem
-                  key={chainId}
-                  value={chainId}
-                >
-                  {chainId}
-                </MenuItem>
-              ))}
+              {chainIdsList.map((chainId) => {
+                // Highlight default option for chaindId
+                const isDefaultChainable = chainId.includes(itemType);
+
+                return (
+                  <MenuItem
+                    key={chainId}
+                    value={chainId}
+                    sx={{ fontWeight: isDefaultChainable ? '700' : 'inherit' }}
+                  >
+                    {isDefaultChainable ? `${chainId} (default)` : chainId}
+                  </MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
         </Grid>

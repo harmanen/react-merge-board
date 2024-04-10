@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import { DndContext, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { DroppableGridItem } from './DroppableGridItem';
@@ -16,6 +16,30 @@ export function Board({
   activeCellIndex,
   setActiveCellIndex,
 }: Board) {
+  // Set chainId of an active cell for visualisation
+  const [activeChainId, setActiveChainId] = useState<string | undefined>(
+    undefined,
+  );
+
+  useEffect(() => {
+    const activeItem = itemsOnBoard[Number(activeCellIndex)];
+
+    // Cell with an item clicked
+    if (activeItem) {
+      setActiveChainId(activeItem.chainId);
+    }
+
+    // Empty cell clicked
+    if (!activeItem) {
+      setActiveChainId(undefined);
+    }
+
+    // Outside of board clicked
+    if (activeItem && !activeCellIndex) {
+      setActiveChainId(undefined);
+    }
+  }, [itemsOnBoard, activeCellIndex]);
+
   // Handle dropping of items
   const handleDragEnd = (event: DragEndEvent) => {
     if (event.over && event.active) {
@@ -81,12 +105,14 @@ export function Board({
               sx={getBorder(index, width, height)}
               // Select active cell
               onPointerDown={() =>
-                itemsOnBoard[index] === null ? setActiveCellIndex(index) : null
+                iconItem === null ? setActiveCellIndex(index) : null
               }
             >
               <DroppableGridItem
                 id={gridId}
                 activeCellIndex={activeCellIndex}
+                activeChainId={activeChainId}
+                chainId={iconItem?.chainId}
               >
                 {iconItem && (
                   <DraggableIconItem
@@ -94,8 +120,8 @@ export function Board({
                     id={iconItem.uuid}
                     iconItem={iconItem}
                     index={index}
-                    isHidden={itemsOnBoard[index]?.visibility === 'hidden'}
-                    isInBubble={itemsOnBoard[index]?.isInsideBubble}
+                    isHidden={iconItem?.visibility === 'hidden'}
+                    isInBubble={iconItem?.isInsideBubble}
                   />
                 )}
               </DroppableGridItem>

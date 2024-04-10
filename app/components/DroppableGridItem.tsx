@@ -5,9 +5,17 @@ import { Box } from '@mui/material';
 
 interface Props extends GenericProps {
   activeCellIndex: UniqueIdentifier | undefined;
+  activeChainId: string | undefined;
+  chainId: string | undefined;
 }
 
-export function DroppableGridItem({ id, activeCellIndex, children }: Props) {
+export function DroppableGridItem({
+  id,
+  activeCellIndex,
+  activeChainId,
+  chainId,
+  children,
+}: Props) {
   const { setNodeRef } = useDroppable({
     // Note that "id" is the same as the array index of the container
     id,
@@ -22,10 +30,20 @@ export function DroppableGridItem({ id, activeCellIndex, children }: Props) {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    // Active cell border
     border:
       id === activeCellIndex
         ? 'var(--active-cell-border)'
         : 'var(--grid-item-border)',
+    // Highlight cells with same chainId
+    backgroundColor:
+      chainId &&
+      activeChainId &&
+      activeCellIndex &&
+      chainId === activeChainId &&
+      id !== activeCellIndex
+        ? 'var(--grid-bg-chained)'
+        : 'inherit',
   };
 
   return (

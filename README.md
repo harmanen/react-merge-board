@@ -14,6 +14,10 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.10: Highlight chainable items**
+  - Add highlight background color for cells with same `chainId` as the active item
+  - Highlight default `chainId` in Select component options of the form
+
 - **0.9: Time fields**
   - Add time fields `createdAt` (read only) and `pausedUntil` (editable) to form
   - Install MUI package for date picker component
