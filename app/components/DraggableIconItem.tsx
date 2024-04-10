@@ -15,6 +15,7 @@ interface Props extends GenericProps {
   index: number;
   isHidden: boolean;
   isInBubble: boolean | undefined;
+  isActive: boolean;
 }
 
 export function DraggableIconItem({
@@ -23,6 +24,7 @@ export function DraggableIconItem({
   index,
   isHidden = false,
   isInBubble = false,
+  isActive,
   children,
 }: Props) {
   // Helper functions
@@ -72,6 +74,7 @@ export function DraggableIconItem({
       {...attributes}
       disableRipple
       className="icon-button"
+      sx={{ zIndex: isActive ? 999 : 'inherit' }}
     >
       <Box
         className="icon-container"
