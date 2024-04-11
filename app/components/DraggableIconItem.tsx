@@ -75,6 +75,7 @@ export function DraggableIconItem({
       disableRipple
       className="icon-button"
       sx={{ zIndex: isActive ? 999 : 'inherit' }}
+      data-testid="draggable-icon-item"
     >
       <Box
         className="icon-container"

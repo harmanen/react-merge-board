@@ -51,6 +51,7 @@ export function DroppableGridItem({
       ref={setNodeRef}
       style={style}
       className="grid-item-container"
+      data-testid="droppable-grid-item"
     >
       {children}
     </Box>
