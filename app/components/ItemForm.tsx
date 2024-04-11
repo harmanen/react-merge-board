@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  ButtonProps,
   Checkbox,
   FormControl,
   FormControlLabel,
@@ -53,6 +54,27 @@ interface ItemEditForm extends ItemForm {
   setActiveCellIndex: setActiveCellIndex;
 }
 
+// Internal components
+const DefaultButton = ({
+  children,
+  sx = {},
+  color = 'success',
+  ...props
+}: ButtonProps) => {
+  return (
+    <Button
+      variant="outlined"
+      size="small"
+      color={color}
+      sx={{ minWidth: '30px', ...sx }}
+      {...props}
+    >
+      {children}
+    </Button>
+  );
+};
+
+// Main component
 export default function ItemForm({
   activeCellIndex,
   setActiveCellIndex,
@@ -185,8 +207,6 @@ export default function ItemForm({
 
   const chainIdsList: Array<string> =
     variant === 'add' ? ['BroomCabinet'] : chainIds;
-
-  const buttonStyles = { minWidth: '30px' };
 
   return (
     <Box
@@ -347,44 +367,27 @@ export default function ItemForm({
           xs={5}
         >
           {variant === 'add' && (
-            <Button
-              variant="outlined"
-              size="small"
-              color="success"
-              type="submit"
-              sx={buttonStyles}
-            >
-              Add item
-            </Button>
+            <DefaultButton type="submit">Add item</DefaultButton>
           )}
           {variant === 'edit' && (
             <>
               {/* Edit button */}
-              <Button
-                variant="outlined"
-                size="small"
-                color="success"
+              <DefaultButton
                 type="submit"
                 sx={{
                   marginRight: '0.3rem',
-                  ...buttonStyles,
                 }}
                 disabled={!isEdited}
               >
-                {/* <Check className="icon-edit-button" /> */}
                 Edit
-              </Button>
+              </DefaultButton>
               {/* Delete button  */}
-              <Button
-                variant="outlined"
-                size="small"
+              <DefaultButton
                 color="error"
                 onClick={handleDelete}
-                sx={buttonStyles}
               >
-                {/* <Delete className="icon-delete-button" /> */}
                 Delete
-              </Button>
+              </DefaultButton>
             </>
           )}
         </Grid>
