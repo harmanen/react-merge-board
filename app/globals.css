@@ -7,8 +7,8 @@
   --icon-size: 70%;
   --item-tier-font-size: min(1.5rem, 3vw);
   /* https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors */
-  --grid-bg-dark: #CFD8DC;
-  --grid-bg-light: #ECEFF1;
+  --grid-bg-dark: #E5E7E9;
+  --grid-bg-light: #FDFEFE;
   --grid-bg-chained: rgba(255, 255, 0, 0.35);
   --grid-item-border: min(0.15rem, 0.1vw) solid var(--grid-bg-dark);
   --container-border: min(0.5rem, 1vw) outset #90A4AE;
