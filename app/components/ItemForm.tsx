@@ -5,7 +5,6 @@ import {
   FormControl,
   FormControlLabel,
   Grid,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -21,7 +20,7 @@ import itemInfo, {
   itemLevels,
   itemTypes,
 } from '../constants/itemInfo';
-import { Add, Check, Delete } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
 import './ItemForm.css';
 import { DateTimeField } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
@@ -188,6 +187,8 @@ export default function ItemForm({
   const chainIdsList: Array<string> =
     variant === 'add' ? ['BroomCabinet'] : chainIds;
 
+  const buttonStyles = { minWidth: '30px' };
+
   return (
     <Box
       component="form"
@@ -348,10 +349,11 @@ export default function ItemForm({
         >
           {variant === 'add' && (
             <Button
-              variant="contained"
+              variant="outlined"
+              size="small"
               color="success"
               type="submit"
-              startIcon={<Add />}
+              sx={buttonStyles}
             >
               Add item
             </Button>
@@ -359,26 +361,31 @@ export default function ItemForm({
           {variant === 'edit' && (
             <>
               {/* Edit button */}
-              <IconButton
+              <Button
+                variant="outlined"
+                size="small"
                 color="success"
                 type="submit"
                 sx={{
                   marginRight: '0.3rem',
-                  padding: 0,
+                  ...buttonStyles,
                 }}
                 disabled={!isEdited}
               >
-                <Check className="icon-edit-button" />
-              </IconButton>
+                {/* <Check className="icon-edit-button" /> */}
+                Edit
+              </Button>
               {/* Delete button  */}
-              <IconButton
+              <Button
+                variant="outlined"
+                size="small"
                 color="error"
                 onClick={handleDelete}
-                size="large"
-                sx={{ padding: 0 }}
+                sx={buttonStyles}
               >
-                <Delete className="icon-delete-button" />
-              </IconButton>
+                {/* <Delete className="icon-delete-button" /> */}
+                Delete
+              </Button>
             </>
           )}
         </Grid>
