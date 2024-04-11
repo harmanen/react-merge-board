@@ -20,7 +20,6 @@ import itemInfo, {
   itemLevels,
   itemTypes,
 } from '../constants/itemInfo';
-import { Add } from '@mui/icons-material';
 import './ItemForm.css';
 import { DateTimeField } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
