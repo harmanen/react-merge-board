@@ -14,6 +14,9 @@ Run locally using `npm run dev`.
 
 ## Version history
 
+- **0.12: Run scans**
+  - Fix problems found by axe DevTools ([Issue #16](https://github.com/harmanen/react-merge-board/issues/16)) and LightHouse ([Issue #17](https://github.com/harmanen/react-merge-board/issues/17)) where applicable
+
 - **0.11: Implement backlog issues**
   - Fix [Issue #12](https://github.com/harmanen/react-merge-board/issues/12)
   - Fix [Issue #9](https://github.com/harmanen/react-merge-board/issues/9)

@@ -1,11 +1,11 @@
 import {
   Box,
   Button,
+  ButtonProps,
   Checkbox,
   FormControl,
   FormControlLabel,
   Grid,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -21,7 +21,6 @@ import itemInfo, {
   itemLevels,
   itemTypes,
 } from '../constants/itemInfo';
-import { Add, Check, Delete } from '@mui/icons-material';
 import './ItemForm.css';
 import { DateTimeField } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
@@ -55,6 +54,27 @@ interface ItemEditForm extends ItemForm {
   setActiveCellIndex: setActiveCellIndex;
 }
 
+// Internal components
+const DefaultButton = ({
+  children,
+  sx = {},
+  color = 'success',
+  ...props
+}: ButtonProps) => {
+  return (
+    <Button
+      variant="outlined"
+      size="small"
+      color={color}
+      sx={{ minWidth: '30px', ...sx }}
+      {...props}
+    >
+      {children}
+    </Button>
+  );
+};
+
+// Main component
 export default function ItemForm({
   activeCellIndex,
   setActiveCellIndex,
@@ -347,38 +367,27 @@ export default function ItemForm({
           xs={5}
         >
           {variant === 'add' && (
-            <Button
-              variant="contained"
-              color="success"
-              type="submit"
-              startIcon={<Add />}
-            >
-              Add item
-            </Button>
+            <DefaultButton type="submit">Add item</DefaultButton>
           )}
           {variant === 'edit' && (
             <>
               {/* Edit button */}
-              <IconButton
-                color="success"
+              <DefaultButton
                 type="submit"
                 sx={{
                   marginRight: '0.3rem',
-                  padding: 0,
                 }}
                 disabled={!isEdited}
               >
-                <Check className="icon-edit-button" />
-              </IconButton>
+                Edit
+              </DefaultButton>
               {/* Delete button  */}
-              <IconButton
+              <DefaultButton
                 color="error"
                 onClick={handleDelete}
-                size="large"
-                sx={{ padding: 0 }}
               >
-                <Delete className="icon-delete-button" />
-              </IconButton>
+                Delete
+              </DefaultButton>
             </>
           )}
         </Grid>

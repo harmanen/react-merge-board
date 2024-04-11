@@ -32,18 +32,9 @@ export function InfoBox({
       <Typography
         align="center"
         variant="h6"
+        component="h1"
       >
         Merge board
-      </Typography>
-
-      {/* TMP */}
-      <Typography
-        variant="subtitle2"
-        align="center"
-        color="error"
-        sx={{ position: 'absolute', top: 0, right: 0, padding: '0.2rem' }}
-      >
-        Work in progress!
       </Typography>
 
       {/* Main content */}
@@ -103,7 +94,8 @@ export function InfoBox({
       {/* Version */}
       <ScaledTypography
         className="app-version"
-        variant="subtitle2"
+        variant="body2"
+        component="h2"
       >
         <Link
           href="https://github.com/harmanen/react-merge-board?tab=readme-ov-file#version-history"
