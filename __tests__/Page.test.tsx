@@ -260,4 +260,54 @@ describe('Page', () => {
     // Should have removed a draggable icon
     expect(getAmountOfDraggables()).toEqual(initialNumberOfDraggables - 1);
   });
+
+  it('should handle hiding items ', async () => {
+    const indexOfItemWithNoChecks = mockData.items.findIndex(
+      (item) =>
+        item !== null && item.visibility === 'visible' && !item.isInsideBubble,
+    );
+
+    render(
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Page />
+      </LocalizationProvider>,
+    );
+
+    // Click an item
+    await userEvent.click(
+      screen.getAllByTestId('draggable-icon-item')[indexOfItemWithNoChecks],
+    );
+
+    // Click checkbox and edit
+    await userEvent.click(screen.getByLabelText('Hidden'));
+    await userEvent.click(screen.getByText('Edit'));
+
+    expect(screen.getByTestId('is-hidden-checked')).toBeInTheDocument();
+    expect(screen.getByTestId('is-in-bubble-unchecked')).toBeInTheDocument();
+  });
+
+  it('should handle bubbling items ', async () => {
+    const indexOfItemWithNoChecks = mockData.items.findIndex(
+      (item) =>
+        item !== null && item.visibility === 'visible' && !item.isInsideBubble,
+    );
+
+    render(
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Page />
+      </LocalizationProvider>,
+    );
+
+    // Click an item
+    await userEvent.click(
+      screen.getAllByTestId('draggable-icon-item')[indexOfItemWithNoChecks],
+    );
+
+    // Click checkbox and edit
+    await userEvent.click(screen.getByLabelText('In bubble'));
+    await userEvent.click(screen.getByText('Edit'));
+
+    expect(screen.getByTestId('is-in-bubble-checked')).toBeInTheDocument();
+    expect(screen.getByTestId('is-hidden-unchecked')).toBeInTheDocument();
+  });
 });

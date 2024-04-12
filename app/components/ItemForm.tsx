@@ -405,6 +405,9 @@ export default function ItemForm({
                 onChange={() => setIsHidden(!isHidden)}
                 inputProps={{ 'aria-label': 'controlled' }}
                 disabled={isInBubble}
+                data-testid={
+                  isHidden ? 'is-hidden-checked' : 'is-hidden-unchecked'
+                }
               />
             }
           />
@@ -416,6 +419,9 @@ export default function ItemForm({
                 onChange={() => setIsInBubble(!isInBubble)}
                 inputProps={{ 'aria-label': 'controlled' }}
                 disabled={isHidden}
+                data-testid={
+                  isInBubble ? 'is-in-bubble-checked' : 'is-in-bubble-unchecked'
+                }
               />
             }
           />
