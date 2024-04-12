@@ -20,6 +20,10 @@ Run all tests with `npm run dev` or a single file with `npx jest __tests__/<file
 
 ## Version history
 
+- **0.13: Automated tests**
+  - Install and configure testing tools
+  - Create automated tests for renders and key functionalities
+
 - **0.12: Run scans**
   - Fix problems found by axe DevTools ([Issue #16](https://github.com/harmanen/react-merge-board/issues/16)) and LightHouse ([Issue #17](https://github.com/harmanen/react-merge-board/issues/17)) where applicable
 
