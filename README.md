@@ -1,6 +1,6 @@
 # React merge board
 
-Proof of concept demo for the board of merge-type games.
+Proof of concept demo for the board of merge-type games. Deployed using GitHub actions.
 
 https://harmanen.github.io/react-merge-board/
 
@@ -10,9 +10,19 @@ Developed using Node.js version 20.22.1 on Windows 11.
 
 Requires legacy deps, see Notes below `npm install --legacy-peer-deps`.
 
-Run locally using `npm run dev`.
+Run in development mode using `npm run dev`.
+
+Build and run locally with `npm run build` and `npm run start`.
+
+## Tests
+
+Run all tests with `npm run dev` or a single file with `npx jest __tests__/<file>`.
 
 ## Version history
+
+- **0.13: Automated tests**
+  - Install and configure testing tools
+  - Create automated tests for renders and key functionalities
 
 - **0.12: Run scans**
   - Fix problems found by axe DevTools ([Issue #16](https://github.com/harmanen/react-merge-board/issues/16)) and LightHouse ([Issue #17](https://github.com/harmanen/react-merge-board/issues/17)) where applicable

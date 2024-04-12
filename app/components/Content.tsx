@@ -8,6 +8,7 @@ import { Item } from './Board.type';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { Box } from '@mui/material';
 import styles from '../page.module.css';
+import { limitForMobile } from '../constants/global';
 
 // Component
 interface mockData {
@@ -64,7 +65,6 @@ export default function Content({ gridIdList, mockData }: Content) {
 
   // Check if mobile width
   // Used to set "dense" MenuItems
-  const limitForMobile = 768;
   const [isMobile, setIsMobile] = useState(false);
 
   const handleWindowSizeChange = () => {

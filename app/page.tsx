@@ -14,13 +14,6 @@ export const metadata: Metadata = {
 const { width, height } = mockData;
 const gridSize = width * height;
 
-// Sanity check
-if (gridSize !== mockData.items.length) {
-  // Replace with error?
-  // eslint-disable-next-line no-console
-  console.warn('Amount of items does not match the grid!');
-}
-
 // Create list of grid ids.
 // Used to generate the board with unique droppable regions.
 const gridIdList: Array<number> = [];
