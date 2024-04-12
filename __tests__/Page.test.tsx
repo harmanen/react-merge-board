@@ -1,4 +1,4 @@
-// Some tests for Content, Board, and InfoBox are here.
+// Tests for Content, Board, and InfoBox working together are here.
 // This is for convenience to automatically pass reasonable props.
 // Other components are tested in their appropriate test files.
 
@@ -14,6 +14,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { itemLevels } from '@/app/constants/itemInfo';
 import { Item } from '@/app/components/Board.type';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 // Helpers
 const resize = () => {

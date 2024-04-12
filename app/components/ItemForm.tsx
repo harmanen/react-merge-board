@@ -91,9 +91,11 @@ export default function ItemForm({
   const [itemLevel, setItemLevel] = useState(initialValues.itemLevel);
   const [isHidden, setIsHidden] = useState(initialValues.isHidden);
   const [isInBubble, setIsInBubble] = useState(initialValues.isInBubble);
-  const [createdAt, setCreatedAt] = useState(dayjs(initialValues.createdAt));
+  const [createdAt, setCreatedAt] = useState(
+    dayjs.utc(initialValues.createdAt),
+  );
   const [pausedUntil, setPausedUntil] = useState(
-    dayjs(initialValues.pausedUntil),
+    dayjs.utc(initialValues.pausedUntil),
   );
 
   useEffect(() => {
@@ -102,8 +104,8 @@ export default function ItemForm({
     setItemLevel(initialValues.itemLevel);
     setIsHidden(initialValues.isHidden);
     setIsInBubble(initialValues.isInBubble);
-    setCreatedAt(dayjs(initialValues.createdAt));
-    setPausedUntil(dayjs(initialValues.pausedUntil));
+    setCreatedAt(dayjs.utc(initialValues.createdAt));
+    setPausedUntil(dayjs.utc(initialValues.pausedUntil));
   }, [initialValues]);
 
   // Disable edit button if no changes are done
@@ -116,8 +118,10 @@ export default function ItemForm({
         itemLevel !== initialValues.itemLevel ||
         isHidden !== initialValues.isHidden ||
         isInBubble !== initialValues.isInBubble ||
-        createdAt.toString() !== dayjs(initialValues.createdAt).toString() ||
-        pausedUntil.toString() !== dayjs(initialValues.pausedUntil).toString(),
+        createdAt.toString() !==
+          dayjs.utc(initialValues.createdAt).toString() ||
+        pausedUntil.toString() !==
+          dayjs.utc(initialValues.pausedUntil).toString(),
     );
   }, [
     initialValues,

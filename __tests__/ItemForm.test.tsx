@@ -6,6 +6,17 @@ import { Item } from '@/app/components/Board.type';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { itemLevels } from '@/app/constants/itemInfo';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+
+const formattedDayjs = (timestamp: string | null) => {
+  // Split date and time from ISO string yyyy-mm-ddThh:mm:ssZ
+  const [date, time] = dayjs.utc(timestamp).format().split('T');
+  // Slice "Z"
+  return `${date} ${time.slice(0, -1)}`;
+};
 
 describe('ItemForm', () => {
   // Pick first item in mockData
@@ -15,7 +26,7 @@ describe('ItemForm', () => {
   // Remove level number from itemType
   item.itemType = item.itemType.split('_')[0];
 
-  const { itemType, chainId, itemLevel } = item;
+  const { itemType, chainId, itemLevel, createdAt, pausedUntil } = item;
 
   const props = {
     activeCellIndex: index,
@@ -87,11 +98,13 @@ describe('ItemForm', () => {
     expect(screen.getByText(itemLevel)).toBeInTheDocument();
     expect(screen.getByText(`${chainId} (default)`)).toBeInTheDocument();
 
-    // Fix timezone issues first
-    // expect(document.getElementById('input-paused-until')?.value).toEqual(
-    //   pausedUntil,
-    // );
-    // expect(screen.getByDisplayValue(createdAt)).toBeInTheDocument();
+    expect(
+      screen.getByDisplayValue(formattedDayjs(pausedUntil)),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByDisplayValue(formattedDayjs(createdAt)),
+    ).toBeInTheDocument();
   });
 
   it('renders initial values for add form', () => {
@@ -113,11 +126,11 @@ describe('ItemForm', () => {
       screen.getByText(`${itemTypeForAddForm} (default)`),
     ).toBeInTheDocument();
 
-    // Fix timezone issues first
-    // expect(document.getElementById('input-paused-until')?.value).toEqual(
-    //   pausedUntil,
-    // );
-    // expect(screen.getByDisplayValue(createdAt)).toBeInTheDocument();
+    expect(screen.getByDisplayValue('YYYY-MM-DD hh:mm:ss')).toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText('Created at (fills in automatically)'),
+    ).toBeInTheDocument();
   });
 
   it('renders buttons in edit form', () => {
