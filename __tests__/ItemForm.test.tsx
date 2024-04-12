@@ -7,15 +7,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { itemLevels } from '@/app/constants/itemInfo';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
+import fi from 'dayjs/locale/fi';
 
-dayjs.extend(utc);
-
-const formattedDayjs = (timestamp: string | null) => {
-  // Split date and time from ISO string yyyy-mm-ddThh:mm:ssZ
-  const [date, time] = dayjs.utc(timestamp).format().split('T');
-  // Slice "Z"
-  return `${date} ${time.slice(0, -1)}`;
+const formattedDayjs = (timestamp: string) => {
+  // Split date and time from locale string yyyy-mm-ddTHH:mm:ss+hh:mm
+  const [date, time] = dayjs(timestamp).locale(fi).format().split('T');
+  // Slice decimals and "Z"
+  return `${date} ${time.split('+')[0]}`;
 };
 
 describe('ItemForm', () => {
@@ -99,7 +97,7 @@ describe('ItemForm', () => {
     expect(screen.getByText(`${chainId} (default)`)).toBeInTheDocument();
 
     expect(
-      screen.getByDisplayValue(formattedDayjs(pausedUntil)),
+      screen.getByDisplayValue(formattedDayjs(pausedUntil as string)),
     ).toBeInTheDocument();
 
     expect(

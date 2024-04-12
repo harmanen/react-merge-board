@@ -6,10 +6,6 @@ import { Item } from '@/app/components/Board.type';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { chainIds, itemLevels, itemTypes } from '@/app/constants/itemInfo';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-
-dayjs.extend(utc);
 
 describe('ItemForm', () => {
   // Pick first item in mockData
