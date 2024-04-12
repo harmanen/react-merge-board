@@ -3,7 +3,7 @@
 // Other components are tested in their appropriate test files.
 
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import Page from '../app/page';
 import { version } from '../package.json';
 import mockData from '@/app/data';
@@ -12,6 +12,8 @@ import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { itemLevels } from '@/app/constants/itemInfo';
+import { Item } from '@/app/components/Board.type';
 
 // Helpers
 const resize = () => {
@@ -103,8 +105,6 @@ describe('Page', () => {
   });
 
   it('renders form after a cell is clicked (mobile)', async () => {
-    const user = userEvent.setup();
-
     render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Page />
@@ -115,7 +115,7 @@ describe('Page', () => {
       resize();
     });
 
-    await user.click(screen.getAllByTestId('draggable-icon-item')[0]);
+    await userEvent.click(screen.getAllByTestId('draggable-icon-item')[0]);
 
     expect(
       screen.getByLabelText('Item type', { exact: false }),
@@ -123,7 +123,27 @@ describe('Page', () => {
   });
 
   it('renders info text if outside of board is clicked', async () => {
-    const user = userEvent.setup();
+    render(
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Page />
+      </LocalizationProvider>,
+    );
+
+    await userEvent.click(screen.getAllByTestId('draggable-icon-item')[0]);
+
+    // Form should be rendered
+    expect(
+      screen.getByLabelText('Item type', { exact: false }),
+    ).toBeInTheDocument();
+
+    await userEvent.click(document.getElementsByTagName('main')[0]);
+
+    // Form should not be rendered
+    expect(screen.getByText(infoText)).toBeInTheDocument();
+  });
+
+  it('should handle adding items ', async () => {
+    const indexOfEmptyCell = mockData.items.indexOf(null);
 
     render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -131,16 +151,113 @@ describe('Page', () => {
       </LocalizationProvider>,
     );
 
-    await user.click(screen.getAllByTestId('draggable-icon-item')[0]);
+    const getAmountOfDraggables = () =>
+      screen.getAllByTestId('draggable-icon-item').length;
 
-    // Form should be rendered
+    const initialNumberOfDraggables = getAmountOfDraggables();
+
+    // Click an empty cell
+    await userEvent.click(
+      screen.getAllByTestId('droppable-grid-item')[indexOfEmptyCell],
+    );
+
+    // Should have opened an add form
+    const addItemButton = screen.getByText('Add item', { exact: false });
+    expect(addItemButton).toBeInTheDocument();
+
+    // Click add button
+    await userEvent.click(addItemButton);
+
+    // Should have changed to edit form
+    expect(screen.getByText('Delete', { exact: false })).toBeInTheDocument();
+
+    // Should have placed a draggable icon
+    expect(getAmountOfDraggables()).toEqual(initialNumberOfDraggables + 1);
+  });
+
+  it('should handle editing items ', async () => {
+    const indexOfFirstOccupiedCell = mockData.items.findIndex(
+      (item) => item !== null,
+    );
+
+    const item = mockData.items[indexOfFirstOccupiedCell] as Item;
+    const initialLevel = item.itemLevel;
+
+    const newLevel =
+      initialLevel === itemLevels[0] ? initialLevel + 1 : initialLevel - 1;
+
+    render(
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Page />
+      </LocalizationProvider>,
+    );
+
+    const getAmountOfDraggables = () =>
+      screen.getAllByTestId('draggable-icon-item').length;
+
+    const initialNumberOfDraggables = getAmountOfDraggables();
+
+    // Click an item
+    await userEvent.click(
+      screen.getAllByTestId('draggable-icon-item')[indexOfFirstOccupiedCell],
+    );
+
+    // Should have opened an edit form
+    const editItemButton = screen.getByText('Edit', { exact: false });
+    expect(editItemButton).toBeInTheDocument();
+
+    // Change level
+    fireEvent.mouseDown(screen.getByLabelText('Level', { exact: false }));
+    // MUI Select is in an element with role listbox
+    fireEvent.click(within(screen.getByRole('listbox')).getByText(newLevel));
+
+    // Click edit button
+    await userEvent.click(editItemButton);
+
+    // Should have stayed in edit form
+    expect(screen.getByText('Edit', { exact: false })).toBeInTheDocument();
+
+    // Should have changed level
+    expect(screen.getByDisplayValue(newLevel)).toBeInTheDocument();
+
+    // Amount of icons should be the same
+    expect(getAmountOfDraggables()).toEqual(initialNumberOfDraggables);
+  });
+
+  it('should handle deleting items ', async () => {
+    const indexOfFirstOccupiedCell = mockData.items.findIndex(
+      (item) => item !== null,
+    );
+
+    render(
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Page />
+      </LocalizationProvider>,
+    );
+
+    const getAmountOfDraggables = () =>
+      screen.getAllByTestId('draggable-icon-item').length;
+
+    const initialNumberOfDraggables = getAmountOfDraggables();
+
+    // Click an item
+    await userEvent.click(
+      screen.getAllByTestId('draggable-icon-item')[indexOfFirstOccupiedCell],
+    );
+
+    // Should have opened an edit form
+    const deleteItemButton = screen.getByText('Delete', { exact: false });
+    expect(deleteItemButton).toBeInTheDocument();
+
+    // Click delete button
+    await userEvent.click(deleteItemButton);
+
+    // Should not render form
     expect(
-      screen.getByLabelText('Item type', { exact: false }),
+      screen.getByText('Start by selecting a cell!', { exact: false }),
     ).toBeInTheDocument();
 
-    await user.click(document.getElementsByTagName('main')[0]);
-
-    // Form should not be rendered
-    expect(screen.getByText(infoText)).toBeInTheDocument();
+    // Should have removed a draggable icon
+    expect(getAmountOfDraggables()).toEqual(initialNumberOfDraggables - 1);
   });
 });
