@@ -21,6 +21,8 @@ const resize = () => {
 
 // Tests
 describe('Page', () => {
+  const infoText = 'Start by selecting a cell!';
+
   it('renders texts', () => {
     render(<Page />);
 
@@ -33,7 +35,7 @@ describe('Page', () => {
     expect(versionNumber).toBeInTheDocument();
     expect(versionNumber.textContent).toEqual(`(v${version})`);
 
-    expect(screen.getByText('Start by selecting a cell!')).toBeInTheDocument();
+    expect(screen.getByText(infoText)).toBeInTheDocument();
   });
 
   it('renders texts (mobile)', () => {
@@ -53,7 +55,7 @@ describe('Page', () => {
     expect(versionNumber).toBeInTheDocument();
     expect(versionNumber.textContent).toEqual(`(v${version})`);
 
-    expect(screen.getByText('Start by selecting a cell!')).toBeInTheDocument();
+    expect(screen.getByText(infoText)).toBeInTheDocument();
   });
 
   it('renders correct amount of grids and items', () => {
@@ -118,5 +120,27 @@ describe('Page', () => {
     expect(
       screen.getByLabelText('Item type', { exact: false }),
     ).toBeInTheDocument();
+  });
+
+  it('renders info text if outside of board is clicked', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Page />
+      </LocalizationProvider>,
+    );
+
+    await user.click(screen.getAllByTestId('draggable-icon-item')[0]);
+
+    // Form should be rendered
+    expect(
+      screen.getByLabelText('Item type', { exact: false }),
+    ).toBeInTheDocument();
+
+    await user.click(document.getElementsByTagName('main')[0]);
+
+    // Form should not be rendered
+    expect(screen.getByText(infoText)).toBeInTheDocument();
   });
 });
