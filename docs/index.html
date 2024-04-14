@@ -1,0 +1,92 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>react-merge-board</title><meta name="description" content="Documentation for react-merge-board"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">react-merge-board</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h2>react-merge-board</h2></div><div class="tsd-panel tsd-typography"><a id="md:react-merge-board" class="tsd-anchor"></a><h1><a href="#md:react-merge-board">React merge board</a></h1><p>Proof of concept demo for the board of merge-type games. Deployed using GitHub actions.</p>
+<p><a href="https://harmanen.github.io/react-merge-board/">https://harmanen.github.io/react-merge-board/</a></p>
+<a id="md:development" class="tsd-anchor"></a><h2><a href="#md:development">Development</a></h2><p>Developed using Node.js version 20.22.1 on Windows 11.</p>
+<p>Requires legacy deps, see Notes below <code>npm install --legacy-peer-deps</code>.</p>
+<p>Run in development mode using <code>npm run dev</code>.</p>
+<p>Build and run locally with <code>npm run build</code> and <code>npm run start</code>.</p>
+<a id="md:tests" class="tsd-anchor"></a><h2><a href="#md:tests">Tests</a></h2><p>Run all tests with <code>npm run dev</code> or a single file with <code>npx jest __tests__/&lt;file&gt;</code>.</p>
+<a id="md:version-history" class="tsd-anchor"></a><h2><a href="#md:version-history">Version history</a></h2><ul>
+<li><p><strong>0.13: Automated tests</strong></p>
+<ul>
+<li>Install and configure testing tools</li>
+<li>Create automated tests for renders and key functionalities</li>
+</ul>
+</li>
+<li><p><strong>0.12: Run scans</strong></p>
+<ul>
+<li>Fix problems found by axe DevTools (<a href="https://github.com/harmanen/react-merge-board/issues/16">Issue #16</a>) and LightHouse (<a href="https://github.com/harmanen/react-merge-board/issues/17">Issue #17</a>) where applicable</li>
+</ul>
+</li>
+<li><p><strong>0.11: Implement backlog issues</strong></p>
+<ul>
+<li>Fix <a href="https://github.com/harmanen/react-merge-board/issues/12">Issue #12</a></li>
+<li>Fix <a href="https://github.com/harmanen/react-merge-board/issues/9">Issue #9</a></li>
+</ul>
+</li>
+<li><p><strong>0.10: Highlight chainable items</strong></p>
+<ul>
+<li>Add highlight background color for cells with same <code>chainId</code> as the active item</li>
+<li>Highlight default <code>chainId</code> in Select component options of the form</li>
+</ul>
+</li>
+<li><p><strong>0.9: Time fields</strong></p>
+<ul>
+<li>Add time fields <code>createdAt</code> (read only) and <code>pausedUntil</code> (editable) to form</li>
+<li>Install MUI package for date picker component</li>
+<li>Install dayjs to handle dates and times</li>
+</ul>
+</li>
+<li><p><strong>0.8: Hotfix</strong></p>
+<ul>
+<li>Fix <a href="https://github.com/harmanen/react-merge-board/issues/8">Issue #8</a></li>
+</ul>
+</li>
+<li><p><strong>0.7: Item editing</strong></p>
+<ul>
+<li>Modify form to be used also in editing items</li>
+<li>Fix issues related to touch screens</li>
+</ul>
+</li>
+<li><p><strong>0.6: Item manipulation</strong></p>
+<ul>
+<li>Enable adding and deleting items (new form component), implement item editing in the next increment<ul>
+<li>This branch was getting quite large so I decided to merge it at this point -&gt; for now, there are some <strong>clear bugs with small devices and touch screens</strong></li>
+</ul>
+</li>
+<li>Properly configure TS linting with stricter rules</li>
+</ul>
+</li>
+<li><p><strong>0.5: Special items</strong></p>
+<ul>
+<li>Indicate if an item is hidden or in a bubble</li>
+</ul>
+</li>
+<li><p><strong>0.4: Board visuals</strong></p>
+<ul>
+<li>Define backgrounds and borders for main layout containers and grid items</li>
+</ul>
+</li>
+<li><p><strong>0.3: Enhanced icons</strong></p>
+<ul>
+<li>Display item tier numbers and define colours for tiers. Display colours in various places</li>
+</ul>
+</li>
+<li><p><strong>0.2: Icons</strong></p>
+<ul>
+<li>Define icons and colours for items</li>
+</ul>
+</li>
+<li><p><strong>0.1: First iteration of the dynamic grid generation and draggable objects</strong></p>
+<ul>
+<li>Items can be moved around but that&#39;s pretty much it</li>
+<li>Zero effort for the visuals at this point so looks horrible (but works!)</li>
+</ul>
+</li>
+</ul>
+<a id="md:notes" class="tsd-anchor"></a><h2><a href="#md:notes">Notes</a></h2><ul>
+<li>Old version of <strong>@typescript-eslint/eslint-plugin</strong> needed to be installed until <a href="https://github.com/vercel/next.js/discussions/53524">NextJS is updated</a> to resolve conflict with the version of @typescript-eslint/parser.<ul>
+<li>Configured on line 75 of the GitHub action workflow</li>
+</ul>
+</li>
+</ul>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-index-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><h4 class="uppercase">Member Visibility</h4><form><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div><div class="tsd-theme-toggle"><h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:react-merge-board"><span>React merge board</span></a><ul><li><a href="#md:development"><span>Development</span></a></li><li><a href="#md:tests"><span>Tests</span></a></li><li><a href="#md:version-history"><span>Version history</span></a></li><li><a href="#md:notes"><span>Notes</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="index.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>react-merge-board</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
