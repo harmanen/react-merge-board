@@ -28,6 +28,8 @@
   "exclude": ["node_modules", "generators"],
   "typedocOptions": {
     "entryPoints": ["app/*.tsx", "app/*/*.tsx"],
-    "out": "docs"
+    "out": "docs",
+    "excludeExternals": true,
+    "plugin": ["typedoc-plugin-missing-exports"]
   }
 }
