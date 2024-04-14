@@ -10,6 +10,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const inter = Inter({ subsets: ['latin'] });
 
+/**
+ * Root layout that applies to all pages.
+ * Various providers are defined in this component:
+ * - `LocalizationProvider`: localization for Material UI date picker
+ * - `AppRouterCacheProvider`: Next.js router
+ * - `ThemeProvider`: there provider for Material UI
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

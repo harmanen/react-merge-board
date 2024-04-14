@@ -1,3 +1,6 @@
+/**
+ * Example data object.
+ */
 const mockData = {
   width: 7,
   height: 9,

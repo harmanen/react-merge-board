@@ -9,7 +9,7 @@ const roboto = Roboto({
   display: 'swap',
 });
 
-let theme = createTheme({
+const theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
@@ -48,6 +48,7 @@ let theme = createTheme({
   },
 });
 
-theme = responsiveFontSizes(theme);
-
-export default theme;
+/**
+ * Theme configuration for Material UI.
+ */
+export default responsiveFontSizes(theme);
