@@ -1,11 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import tierColorMap from '../constants/tierColorMap';
+import { type ItemTier } from '../types/ItemTier.type';
 
-interface Props {
-  itemLevel: number;
-}
-
-export function ItemTier({ itemLevel }: Props) {
+export function ItemTier({ itemLevel }: ItemTier) {
   return (
     <Box
       className="item-tier-container"

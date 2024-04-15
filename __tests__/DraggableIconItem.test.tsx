@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { DraggableIconItem } from '@/app/components/DraggableIconItem';
 import mockData from '@/app/data';
-import { Item } from '@/app/components/Board.type';
+import { Item } from '@/app/types/mockData.type';
 
 describe('DraggableIconItem', () => {
   const props = {

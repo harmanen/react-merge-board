@@ -1,14 +1,7 @@
 import { Box } from '@mui/material';
-import { ReactNode } from 'react';
 import { Visibility } from '@mui/icons-material';
 import './IconWrapper.css';
-
-type Variant = 'bubble' | 'hidden';
-
-interface IconWrapper {
-  children: ReactNode;
-  variant: Variant;
-}
+import { type IconWrapper } from '../types/IconWrapper.type';
 
 export default function IconWrapper({ variant, children }: IconWrapper) {
   return (

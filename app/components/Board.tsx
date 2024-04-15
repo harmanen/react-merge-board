@@ -4,7 +4,7 @@ import { DndContext, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { DroppableGridItem } from './DroppableGridItem';
 import styles from '../page.module.css';
 import { DraggableIconItem } from './DraggableIconItem';
-import type Board from './Board.type';
+import { type Board } from '../types/Board.type';
 import getBorder from '../helpers/getBorder';
 
 export function Board({

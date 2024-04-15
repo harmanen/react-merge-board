@@ -1,22 +1,12 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import packageJSON from '../../package.json';
-import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
-import { UniqueIdentifier } from '@dnd-kit/core';
 import './InfoBox.css';
 import ScaledTypography from './ScaledTypography';
 import Link from 'next/link';
 import ItemForm from './ItemForm';
 import { itemLevels } from '../constants/itemInfo';
-
-interface InfoBox {
-  activeCellIndex: UniqueIdentifier | undefined;
-  setActiveCellIndex: setActiveCellIndex;
-  activeItem: ItemOnBoard | null | undefined;
-  itemsOnBoard: Array<ItemOnBoard | null>;
-  setItemsOnBoard: setItemsOnBoard;
-  isMobile: boolean;
-}
+import { type InfoBox } from '../types/InfoBox.type';
 
 export function InfoBox({
   activeCellIndex,

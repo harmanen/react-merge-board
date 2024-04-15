@@ -1,15 +1,5 @@
 import { UniqueIdentifier } from '@dnd-kit/core';
-
-export interface Item {
-  itemId: number;
-  itemType: string;
-  chainId: string;
-  pausedUntil: string | null;
-  createdAt: string;
-  visibility: string;
-  itemLevel: number;
-  isInsideBubble: boolean;
-}
+import { Item } from './mockData.type';
 
 export interface ItemOnBoard extends Item {
   uuid: string;
@@ -23,7 +13,7 @@ export interface setActiveCellIndex {
   (id: UniqueIdentifier | undefined): void;
 }
 
-export default interface Board {
+export interface Board {
   itemsOnBoard: Array<ItemOnBoard | null>;
   setItemsOnBoard: setItemsOnBoard;
   width: number;

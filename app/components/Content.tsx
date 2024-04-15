@@ -4,24 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { InfoBox } from './InfoBox';
 import { Board } from './Board';
-import { Item } from './Board.type';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { Box } from '@mui/material';
 import styles from '../page.module.css';
 import { limitForMobile } from '../constants/global';
-
-// Component
-interface mockData {
-  width: number;
-  height: number;
-  boardId: string;
-  items: Array<Item | null>;
-}
-
-interface Content {
-  gridIdList: Array<number>;
-  mockData: mockData;
-}
+import { type Content } from '../types/Content.type';
 
 export default function Content({ gridIdList, mockData }: Content) {
   const { width, height, items } = mockData;

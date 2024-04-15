@@ -13,7 +13,7 @@ import userEvent from '@testing-library/user-event';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { itemLevels } from '@/app/constants/itemInfo';
-import { Item } from '@/app/components/Board.type';
+import { Item } from '@/app/types/mockData.type';
 
 // Helpers
 const resize = () => {

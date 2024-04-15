@@ -30,19 +30,7 @@ import {
   Toys,
   WifiChannel,
 } from '@mui/icons-material';
-
-export interface item {
-  itemType: string;
-  icon: JSX.Element | null;
-}
-
-interface itemInfo {
-  [key: string]: item;
-}
-
-interface colors {
-  [key: string]: string;
-}
+import { type itemInfo, type colors } from '../types/itemInfo.type';
 
 // https://www.computerhope.com/htmcolor.htm#color-codes
 const colors: colors = {

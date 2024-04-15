@@ -14,8 +14,6 @@ import {
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
-import { UniqueIdentifier } from '@dnd-kit/core';
-import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
 import itemInfo, {
   chainIds,
   itemLevels,
@@ -25,34 +23,7 @@ import './ItemForm.css';
 import { DateTimeField } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { dateFormat } from '../constants/formats';
-
-interface InitialValues {
-  itemType: string;
-  chainId: string;
-  itemLevel: string;
-  isHidden: boolean;
-  isInBubble: boolean;
-  pausedUntil: string | null;
-  createdAt?: string;
-}
-
-interface ItemForm {
-  activeCellIndex: UniqueIdentifier | undefined;
-  itemsOnBoard: Array<ItemOnBoard | null>;
-  setItemsOnBoard: setItemsOnBoard;
-  initialValues: InitialValues;
-  isMobile: boolean;
-}
-
-interface ItemAddForm extends ItemForm {
-  variant: 'add';
-  setActiveCellIndex?: never;
-}
-
-interface ItemEditForm extends ItemForm {
-  variant: 'edit';
-  setActiveCellIndex: setActiveCellIndex;
-}
+import { type ItemAddForm, ItemEditForm } from '../types/ItemForm.type';
 
 // Internal components
 const DefaultButton = ({

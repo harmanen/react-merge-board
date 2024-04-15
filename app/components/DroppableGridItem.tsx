@@ -1,13 +1,7 @@
 import React from 'react';
-import { UniqueIdentifier, useDroppable } from '@dnd-kit/core';
-import GenericProps from './GenericProps.type';
+import { useDroppable } from '@dnd-kit/core';
 import { Box } from '@mui/material';
-
-interface Props extends GenericProps {
-  activeCellIndex: UniqueIdentifier | undefined;
-  activeChainId: string | undefined;
-  chainId: string | undefined;
-}
+import { type DroppableGridItem } from '../types/DroppableGridItem.type';
 
 export function DroppableGridItem({
   id,
@@ -15,7 +9,7 @@ export function DroppableGridItem({
   activeChainId,
   chainId,
   children,
-}: Props) {
+}: DroppableGridItem) {
   const { setNodeRef } = useDroppable({
     // Note that "id" is the same as the array index of the container
     id,

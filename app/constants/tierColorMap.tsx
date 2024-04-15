@@ -2,9 +2,7 @@
 // Use similar scheme from "looter arpgs"
 // i.e white-green-blue-purple-orange-gold.
 
-interface tierColorMap {
-  [key: number]: string;
-}
+import { type tierColorMap } from '../types/tierColorMap.type';
 
 // https://htmlcolorcodes.com/
 const tierColorMap: tierColorMap = {

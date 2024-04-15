@@ -2,21 +2,13 @@ import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { Box, IconButton } from '@mui/material';
 import { CSS } from '@dnd-kit/utilities';
-import GenericProps from './GenericProps.type';
-import itemInfo, { item } from '../constants/itemInfo';
 import { Block } from '@mui/icons-material';
-import { Item } from './Board.type';
 import { ItemTier } from './ItemTier';
 import tierColorMap from '../constants/tierColorMap';
 import IconWrapper from './IconWrapper';
-
-interface Props extends GenericProps {
-  iconItem: Item;
-  index: number;
-  isHidden: boolean;
-  isInBubble: boolean | undefined;
-  isActive: boolean;
-}
+import { type DraggableIconItem } from '../types/DraggableIconItem.type';
+import { itemIcon } from '../types/itemInfo.type';
+import itemInfo from '../constants/itemInfo';
 
 export function DraggableIconItem({
   id,
@@ -26,9 +18,9 @@ export function DraggableIconItem({
   isInBubble = false,
   isActive,
   children,
-}: Props) {
+}: DraggableIconItem) {
   // Helper functions
-  const getIcon = (item: item) => {
+  const getIcon = (item: itemIcon) => {
     // Get icon or use default if missing
     const unwrappedIcon = item.icon || <Block sx={{ color: 'red' }} />;
 

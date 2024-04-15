@@ -2,12 +2,12 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import ItemForm from '@/app/components/ItemForm';
 import mockData from '@/app/data';
-import { Item } from '@/app/components/Board.type';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { itemLevels } from '@/app/constants/itemInfo';
 import dayjs from 'dayjs';
 import fi from 'dayjs/locale/fi';
+import { Item } from '@/app/types/mockData.type';
 
 const formattedDayjs = (timestamp: string) => {
   // Split date and time from locale string yyyy-mm-ddTHH:mm:ss+hh:mm
