@@ -26,7 +26,10 @@ for (let i = 0; i < gridSize; i++) {
 
 /**
  * Main page of the app.
- * Imports data, defines grid size, and generates an ID list for board generation.
+ * - Imports data.
+ * - Calculates grid size.
+ * - Generates an ID list for board generation.
+ * - Renders the {@link Content} component.
  */
 export default function Home() {
   return (
