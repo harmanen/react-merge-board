@@ -14,7 +14,8 @@ import {
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
-import itemInfo, {
+import {
+  itemInfo,
   chainIds,
   itemLevels,
   itemTypes,

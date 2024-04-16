@@ -4,7 +4,13 @@
 
 import { type tierColorMap } from '../types/tierColorMap.type';
 
-// https://htmlcolorcodes.com/
+/**
+ * Maps item levels to color hex values.
+ *
+ * Colors are picked from https://htmlcolorcodes.com/ and the scheme is
+ * inspired by the rarity level colors typically used for loot
+ * in PC RPGs (white/grey-green-blue-purple-orange-gold).
+ */
 const tierColorMap: tierColorMap = {
   1: '#566573',
   2: '#17202A',

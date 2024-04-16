@@ -8,7 +8,7 @@ import tierColorMap from '../constants/tierColorMap';
 import IconWrapper from './IconWrapper';
 import { type DraggableIconItem } from '../types/DraggableIconItem.type';
 import { itemIcon } from '../types/itemInfo.type';
-import itemInfo from '../constants/itemInfo';
+import { itemInfo } from '../constants/itemInfo';
 
 export function DraggableIconItem({
   id,
