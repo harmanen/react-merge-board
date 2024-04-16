@@ -7,6 +7,17 @@ import { DraggableIconItem } from './DraggableIconItem';
 import { type Board } from '../types/Board.type';
 import getBorder from '../helpers/getBorder';
 
+/**
+ * Lower major element of the app.
+ * - Holds the state for the `chainId` of an active (i.e. clicked) item.
+ * - Handles setting of the abovementioned state in case an empty cell,
+ * a cell with an item, or outside of the app area is clicked.
+ * - Defines handler functions for start and end of drag-and-drop events.
+ * - Based on input props, renders a grid (or board) of droppable cells
+ * ({@link DroppableGridItem} components) and occupies them with icon items
+ * ({@link DraggableIconItem} components).
+ * - Wraps everything in DndContext.
+ */
 export function Board({
   itemsOnBoard,
   setItemsOnBoard,
