@@ -2,6 +2,10 @@ import { Box, Typography } from '@mui/material';
 import { tierColorMap } from '../constants/tierColorMap';
 import { type ItemTier } from '../types/ItemTier.type';
 
+/**
+ * Elements and styles for visualizing item level in a colored circle
+ * with radial gradient.
+ */
 export function ItemTier({ itemLevel }: ItemTier) {
   return (
     <Box
