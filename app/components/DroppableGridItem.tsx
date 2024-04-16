@@ -3,6 +3,13 @@ import { useDroppable } from '@dnd-kit/core';
 import { Box } from '@mui/material';
 import { type DroppableGridItem } from '../types/DroppableGridItem.type';
 
+/**
+ * Component for grid elements where draggable elements can be dropped into.
+ * - Uses the `useDroppable` hook of the dnd kit.
+ * - Handles border visualization for the active cell.
+ * - Handles background visualization for cells with the same chain ID as the
+ * active item has.
+ */
 export function DroppableGridItem({
   id,
   activeCellIndex,

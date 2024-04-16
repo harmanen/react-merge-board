@@ -4,12 +4,25 @@ import { Box, IconButton } from '@mui/material';
 import { CSS } from '@dnd-kit/utilities';
 import { Block } from '@mui/icons-material';
 import { ItemTier } from './ItemTier';
-import tierColorMap from '../constants/tierColorMap';
+import { tierColorMap } from '../constants/tierColorMap';
 import IconWrapper from './IconWrapper';
 import { type DraggableIconItem } from '../types/DraggableIconItem.type';
 import { itemIcon } from '../types/itemInfo.type';
 import { itemInfo } from '../constants/itemInfo';
 
+/**
+ * Component for draggable elements that can be dropped into droppable grid
+ * elements.
+ * - Uses the `useDraggable` hook of the dnd kit.
+ * - Handles movement of an item being dragged.
+ * - Selects and renders appropriate icon element defined in {@link itemInfo}
+ * and wraps it with {@link IconWrapper} component if the item has
+ * status `isHidden` or `isInBubble`.
+ * - Drops shadow for the icon. Color is based on the item's level
+ * (see {@link tierColorMap}).
+ * - Renders {@link ItemTier} component.
+ *
+ */
 export function DraggableIconItem({
   id,
   iconItem,

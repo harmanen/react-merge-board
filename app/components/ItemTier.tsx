@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import tierColorMap from '../constants/tierColorMap';
+import { tierColorMap } from '../constants/tierColorMap';
 import { type ItemTier } from '../types/ItemTier.type';
 
 export function ItemTier({ itemLevel }: ItemTier) {
