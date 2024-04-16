@@ -26,7 +26,9 @@ import dayjs from 'dayjs';
 import { dateFormat } from '../constants/formats';
 import { type ItemAddForm, ItemEditForm } from '../types/ItemForm.type';
 
-// Internal components
+/**
+ * Internal component for Button default props and styles.
+ */
 const DefaultButton = ({
   children,
   sx = {},
@@ -47,6 +49,37 @@ const DefaultButton = ({
 };
 
 // Main component
+
+/**
+ * Form component to add, edit, and delete items.
+ *
+ * Renders
+ * - Dropdown Selects for
+ *   - Item type.
+ *   - Item level.
+ *   - Chain ID.
+ * - DateTimeFields for
+ *   - Paused until.
+ *   - Created at (read only).
+ * - Checkboxes for
+ *   - Is hidden.
+ *   - Is in bubble.
+ * - Buttons
+ *   - `Add item` if active cell is empty.
+ *   - `Edit` and `Delete` if actice cell has an item.
+ *
+ * Handles
+ * - Form submission (add or edit item)
+ * - Item deletion
+ *
+ * Notes
+ * - `Edit` button is disabled if the current values of the field match the
+ * initial values.
+ * - Checkboxes are mutually exclusive (disable other if the other is checked).
+ * - Form layout is controlled using MUI Grid component.
+ * - Uses constants  {@link itemInfo}, {@link chainIds}, {@link itemLevels},
+ * {@link itemTypes}, and {@link dateFormat}.
+ */
 export default function ItemForm({
   activeCellIndex,
   setActiveCellIndex,
