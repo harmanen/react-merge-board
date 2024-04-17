@@ -1,7 +1,17 @@
-const getBorder = (index: number, width: number, height: number) => {
-  // Append border to "light" grid items at the edges of the board
-  // so they don't look like a part of the background but the grid.
-  // Could be optimized using CSS :nth?
+/**
+ * Appends borders to "light" grid items at the edges of the board
+ * so they don't look like a part of the background but the grid.
+ * E.g. cell at index 1 would get border at the top of the element etc.
+ * @param index Array index of a cell.
+ * @param width Number of cells horizontally on the board.
+ * @param height Number of cells vertically on the board.
+ * @returns CSS definitions for the borders of the cell at `index`.
+ */
+export default function getBorder(
+  index: number,
+  width: number,
+  height: number,
+) {
   const gridItemStyles = {
     borderTop: 'none',
     borderRight: 'none',
@@ -29,6 +39,4 @@ const getBorder = (index: number, width: number, height: number) => {
   }
 
   return gridItemStyles;
-};
-
-export default getBorder;
+}

@@ -1,17 +1,16 @@
 // Scale font size automatically using this component
-import { Typography, TypographyStyle } from '@mui/material';
+import { Typography } from '@mui/material';
 import { ReactNode } from 'react';
+import { type ScaledTypography } from '../types/ScaledTypography.type';
 
-interface Props extends TypographyStyle {
-  // Needed to be manually defined to get rid of an error...
-  // TypographyStyle out of date?
-  translate?: 'yes' | 'no' | undefined;
-}
-
+/**
+ * Extended Typography component that applies responsive font scaling defined
+ * in the root CSS.
+ */
 export default function ScaledTypography({
   children,
   ...props
-}: Props): ReactNode {
+}: ScaledTypography): ReactNode {
   return (
     <Typography
       {...props}

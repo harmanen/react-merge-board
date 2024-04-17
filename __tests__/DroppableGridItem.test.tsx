@@ -1,3 +1,7 @@
+/**
+ * Render tests for the DroppableGridItem component.
+ * @module
+ */
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { DroppableGridItem } from '@/app/components/DroppableGridItem';

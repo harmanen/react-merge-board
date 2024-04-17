@@ -1,21 +1,22 @@
 import React from 'react';
-import { UniqueIdentifier, useDroppable } from '@dnd-kit/core';
-import GenericProps from './GenericProps.type';
+import { useDroppable } from '@dnd-kit/core';
 import { Box } from '@mui/material';
+import { type DroppableGridItem } from '../types/DroppableGridItem.type';
 
-interface Props extends GenericProps {
-  activeCellIndex: UniqueIdentifier | undefined;
-  activeChainId: string | undefined;
-  chainId: string | undefined;
-}
-
+/**
+ * Component for grid elements where draggable elements can be dropped into.
+ * - Uses the `useDroppable` hook of the dnd kit.
+ * - Handles border visualization for the active cell.
+ * - Handles background visualization for cells with the same chain ID as the
+ * active item has.
+ */
 export function DroppableGridItem({
   id,
   activeCellIndex,
   activeChainId,
   chainId,
   children,
-}: Props) {
+}: DroppableGridItem) {
   const { setNodeRef } = useDroppable({
     // Note that "id" is the same as the array index of the container
     id,

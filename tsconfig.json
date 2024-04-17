@@ -25,5 +25,11 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "generators"]
+  "exclude": ["node_modules", "generators"],
+  "typedocOptions": {
+    "entryPoints": ["app/*.tsx", "app/*/*.tsx", "__tests__/*.tsx"],
+    "out": "public",
+    "excludeExternals": true,
+    "plugin": ["typedoc-plugin-missing-exports"]
+  }
 }

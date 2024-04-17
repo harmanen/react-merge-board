@@ -14,9 +14,8 @@ import {
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InfoBox.css';
-import { UniqueIdentifier } from '@dnd-kit/core';
-import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
-import itemInfo, {
+import {
+  itemInfo,
   chainIds,
   itemLevels,
   itemTypes,
@@ -25,36 +24,11 @@ import './ItemForm.css';
 import { DateTimeField } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { dateFormat } from '../constants/formats';
+import { type ItemAddForm, ItemEditForm } from '../types/ItemForm.type';
 
-interface InitialValues {
-  itemType: string;
-  chainId: string;
-  itemLevel: string;
-  isHidden: boolean;
-  isInBubble: boolean;
-  pausedUntil: string | null;
-  createdAt?: string;
-}
-
-interface ItemForm {
-  activeCellIndex: UniqueIdentifier | undefined;
-  itemsOnBoard: Array<ItemOnBoard | null>;
-  setItemsOnBoard: setItemsOnBoard;
-  initialValues: InitialValues;
-  isMobile: boolean;
-}
-
-interface ItemAddForm extends ItemForm {
-  variant: 'add';
-  setActiveCellIndex?: never;
-}
-
-interface ItemEditForm extends ItemForm {
-  variant: 'edit';
-  setActiveCellIndex: setActiveCellIndex;
-}
-
-// Internal components
+/**
+ * Internal component for Button default props and styles.
+ */
 const DefaultButton = ({
   children,
   sx = {},
@@ -75,6 +49,37 @@ const DefaultButton = ({
 };
 
 // Main component
+
+/**
+ * Form component to add, edit, and delete items.
+ *
+ * Renders
+ * - Dropdown Selects for
+ *   - Item type.
+ *   - Item level.
+ *   - Chain ID.
+ * - DateTimeFields for
+ *   - Paused until.
+ *   - Created at (read only).
+ * - Checkboxes for
+ *   - Is hidden.
+ *   - Is in bubble.
+ * - Buttons
+ *   - `Add item` if active cell is empty.
+ *   - `Edit` and `Delete` if actice cell has an item.
+ *
+ * Handles
+ * - Form submission (add or edit item)
+ * - Item deletion
+ *
+ * Notes
+ * - `Edit` button is disabled if the current values of the field match the
+ * initial values.
+ * - Checkboxes are mutually exclusive (disable other if the other is checked).
+ * - Form layout is controlled using MUI Grid component.
+ * - Uses constants  {@link itemInfo}, {@link chainIds}, {@link itemLevels},
+ * {@link itemTypes}, and {@link dateFormat}.
+ */
 export default function ItemForm({
   activeCellIndex,
   setActiveCellIndex,

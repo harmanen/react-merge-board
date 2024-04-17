@@ -1,7 +1,16 @@
-// Tests for Content, Board, and InfoBox working together are here.
-// This is for convenience to automatically pass reasonable props.
-// Other components are tested in their appropriate test files.
-
+/**
+ * Tests that the app renders and behaves correctly when mounted as a whole.
+ *
+ * Tests for `Content`, `Board`, and `InfoBox` working together are here.
+ * This is for convenience to automatically pass reasonable props.
+ *
+ * Other components are tested in their appropriate test files except the
+ * checkboxes of the form are tested here.
+ *
+ * **Note:** change of the field `pausedUntil` is not tested automatically
+ * and must be confirmed by manual tests!
+ * @module
+ */
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import Page from '../app/page';
@@ -13,7 +22,7 @@ import userEvent from '@testing-library/user-event';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { itemLevels } from '@/app/constants/itemInfo';
-import { Item } from '@/app/components/Board.type';
+import { Item } from '@/app/types/mockData.type';
 
 // Helpers
 const resize = () => {

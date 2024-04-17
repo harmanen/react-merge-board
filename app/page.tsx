@@ -5,6 +5,9 @@ import Content from './components/Content';
 // Replace with an API call
 import mockData from './data';
 
+/**
+ * Site metadata (title and description).
+ */
 export const metadata: Metadata = {
   title: 'React merge board',
   description: 'Proof of concept app for merge-type games',
@@ -21,6 +24,13 @@ for (let i = 0; i < gridSize; i++) {
   gridIdList.push(i);
 }
 
+/**
+ * Main page of the app.
+ * - Imports data.
+ * - Calculates grid size.
+ * - Generates an ID list for board generation.
+ * - Renders the {@link Content} component.
+ */
 export default function Home() {
   return (
     <main className={styles.main}>

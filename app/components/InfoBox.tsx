@@ -1,23 +1,30 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import packageJSON from '../../package.json';
-import { ItemOnBoard, setActiveCellIndex, setItemsOnBoard } from './Board.type';
-import { UniqueIdentifier } from '@dnd-kit/core';
 import './InfoBox.css';
 import ScaledTypography from './ScaledTypography';
 import Link from 'next/link';
 import ItemForm from './ItemForm';
 import { itemLevels } from '../constants/itemInfo';
+import { type InfoBox } from '../types/InfoBox.type';
 
-interface InfoBox {
-  activeCellIndex: UniqueIdentifier | undefined;
-  setActiveCellIndex: setActiveCellIndex;
-  activeItem: ItemOnBoard | null | undefined;
-  itemsOnBoard: Array<ItemOnBoard | null>;
-  setItemsOnBoard: setItemsOnBoard;
-  isMobile: boolean;
-}
-
+/**
+ * Upper major element of the app.
+ * - Renders app title.
+ * - Depending whether or not a grid cell is active (i.e. clicked),
+ * renders an {@link ItemForm} component or info text suggesting to
+ * click a cell.
+ * - Depending wheter or not an acive cell has an item or not, renders
+ * a different variant of the the {@link ItemForm} component (`edit` or `add`).
+ * - Renders the version number with a link to the version history
+ * in GitHub.
+ * - Uses {@link ScaledTypography} component for responsive fonts.
+ *
+ * **Note:** `variant` and `component` props for typographies might be a
+ * bit confusing - this is done to achieve sensible header hierarchy in the
+ * document (accessibility issue). E.g. the title is visually displayed as MUI
+ * `h6` but it is represented by `h1` in the DOM.
+ */
 export function InfoBox({
   activeCellIndex,
   setActiveCellIndex,

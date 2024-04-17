@@ -4,25 +4,22 @@ import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { InfoBox } from './InfoBox';
 import { Board } from './Board';
-import { Item } from './Board.type';
 import { UniqueIdentifier } from '@dnd-kit/core';
 import { Box } from '@mui/material';
 import styles from '../page.module.css';
 import { limitForMobile } from '../constants/global';
+import { type Content } from '../types/Content.type';
 
-// Component
-interface mockData {
-  width: number;
-  height: number;
-  boardId: string;
-  items: Array<Item | null>;
-}
-
-interface Content {
-  gridIdList: Array<number>;
-  mockData: mockData;
-}
-
+/**
+ * Main content wrapper for the app.
+ * - Holds the state for the items on board
+ * and for the array index of an active cell.
+ * - Defines click handler for clicks outside the app area.
+ * - Sets variable `isMobile` for responsivity
+ * and tracks viewport resize events.
+ * - Adds UUIDs for item data objects required by the `useDraggable` hook.
+ * - Renders {@link InfoBox} and {@link Board} components.
+ */
 export default function Content({ gridIdList, mockData }: Content) {
   const { width, height, items } = mockData;
 

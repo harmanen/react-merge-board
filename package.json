@@ -7,7 +7,8 @@
     "build": "next build && touch out/.nojekyll",
     "start": "npx serve@latest out",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "docs": "typedoc"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
@@ -45,6 +46,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
+    "typedoc": "^0.25.13",
+    "typedoc-plugin-missing-exports": "^2.2.0",
     "typescript": "^5"
   }
 }

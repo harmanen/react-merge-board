@@ -30,21 +30,17 @@ import {
   Toys,
   WifiChannel,
 } from '@mui/icons-material';
+import {
+  type itemInfo as itemInfoType,
+  type colors,
+} from '../types/itemInfo.type';
 
-export interface item {
-  itemType: string;
-  icon: JSX.Element | null;
-}
-
-interface itemInfo {
-  [key: string]: item;
-}
-
-interface colors {
-  [key: string]: string;
-}
-
-// https://www.computerhope.com/htmcolor.htm#color-codes
+/**
+ * Maps item types to color hex values.
+ *
+ * Colors are selected from
+ * https://www.computerhope.com/htmcolor.htm#color-codes.
+ */
 const colors: colors = {
   drawer: '#931314', // Saffron Red
   flower: '#056608', // Deep Green
@@ -73,7 +69,10 @@ const colors: colors = {
   holiday: '#FD1C03', // Neon Red
 };
 
-const itemInfo: itemInfo = {
+/**
+ * Maps item IDs to their respective colored icons.
+ */
+export const itemInfo: itemInfoType = {
   '62': {
     itemType: 'Drawer_03',
     icon: <Article sx={{ color: colors.drawer }} />,
@@ -277,10 +276,14 @@ const itemInfo: itemInfo = {
   },
 };
 
-export default itemInfo;
-
+/**
+ * Array of possible item levels.
+ */
 export const itemLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
+/**
+ * Array of possible item types.
+ */
 export const itemTypes = [
   'BroomCabinet',
   'Vase',
@@ -310,6 +313,9 @@ export const itemTypes = [
   'Tree',
 ];
 
+/**
+ * Array of possible chain IDs for an item.
+ */
 export const chainIds = [
   'BroomCabinet',
   'Vase',

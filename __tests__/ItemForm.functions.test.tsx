@@ -1,11 +1,17 @@
+/**
+ * Functionality tests for the dropdown selects of the ItemForm component.
+ *
+ * **Note:** this form is partially tested in `Page.test`.
+ * @module
+ */
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import ItemForm from '@/app/components/ItemForm';
 import mockData from '@/app/data';
-import { Item } from '@/app/components/Board.type';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { chainIds, itemLevels, itemTypes } from '@/app/constants/itemInfo';
+import { Item } from '@/app/types/mockData.type';
 
 describe('ItemForm', () => {
   // Pick first item in mockData
