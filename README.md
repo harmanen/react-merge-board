@@ -1,6 +1,6 @@
 # React merge board
 
-Proof of concept demo for the board of merge-type games. Deployed using GitHub actions.
+Proof of concept demo of an editing tool for games with interactable items on a board. Deployed using GitHub actions.
 
 https://harmanen.github.io/react-merge-board/
 
@@ -14,11 +14,19 @@ Run in development mode using `npm run dev`.
 
 Build and run locally with `npm run build` and `npm run start`.
 
+## Documentation
+
+[Typedoc](https://typedoc.org/) documentation available [here](https://harmanen.github.io/react-merge-board/documentation/).
+
 ## Tests
 
 Run all tests with `npm run dev` or a single file with `npx jest __tests__/<file>`.
 
 ## Version history
+
+- **0.14: Documentation**
+  - See [PR #30](https://github.com/harmanen/react-merge-board/pull/30)
+  - Note: routing to Typedoc output in `/public` did not work in production. Overwrite /out/documentation with Typedoc output after build instead...
 
 - **0.13: Automated tests**
   - Install and configure testing tools
