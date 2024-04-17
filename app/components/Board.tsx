@@ -46,7 +46,7 @@ export function Board({
     }
 
     // Outside of board clicked
-    if (activeItem && !activeCellIndex) {
+    if (activeItem && activeCellIndex === undefined) {
       setActiveChainId(undefined);
     }
   }, [itemsOnBoard, activeCellIndex]);

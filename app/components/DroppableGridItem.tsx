@@ -40,7 +40,7 @@ export function DroppableGridItem({
     backgroundColor:
       chainId &&
       activeChainId &&
-      activeCellIndex &&
+      activeCellIndex !== undefined &&
       chainId === activeChainId &&
       id !== activeCellIndex
         ? 'var(--grid-bg-chained)'
