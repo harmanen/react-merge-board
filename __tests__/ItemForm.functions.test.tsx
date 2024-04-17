@@ -1,3 +1,9 @@
+/**
+ * Functionality tests for the dropdown selects of the ItemForm component.
+ *
+ * **Note:** this form is partially tested in `Page.test`.
+ * @module
+ */
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import ItemForm from '@/app/components/ItemForm';

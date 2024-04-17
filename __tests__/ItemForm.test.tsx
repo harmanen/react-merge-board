@@ -1,3 +1,7 @@
+/**
+ * Render tests for the ItemForm component.
+ * @module
+ */
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import ItemForm from '@/app/components/ItemForm';

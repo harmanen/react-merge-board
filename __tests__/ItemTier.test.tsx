@@ -1,3 +1,7 @@
+/**
+ * Render tests for the ItemTier component.
+ * @module
+ */
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { ItemTier } from '@/app/components/ItemTier';

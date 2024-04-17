@@ -1,3 +1,7 @@
+/**
+ * Render tests for the DraggableIconItem component.
+ * @module
+ */
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { DraggableIconItem } from '@/app/components/DraggableIconItem';
