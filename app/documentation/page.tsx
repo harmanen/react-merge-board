@@ -1,8 +1,7 @@
-import { redirect } from 'next/navigation';
-
 /**
- * Redirect route /documentation to public/index.html i.e. to Typedoc output.
+ * This file is to create a route for documentation whose files should be
+ * overwritten by the Typedoc output
  */
-export default async function Documentation() {
-  redirect('index.html');
+export default async function Page() {
+  return <div>...</div>;
 }

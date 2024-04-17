@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && touch out/.nojekyll",
+    "build": "next build && touch out/.nojekyll && typedoc",
     "start": "npx serve@latest out",
     "lint": "next lint",
     "test": "jest",
@@ -25,6 +25,8 @@
     "next": "14.1.3",
     "react": "^18",
     "react-dom": "^18",
+    "typedoc": "^0.25.13",
+    "typedoc-plugin-missing-exports": "^2.2.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -46,8 +48,6 @@
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.25.13",
-    "typedoc-plugin-missing-exports": "^2.2.0",
     "typescript": "^5"
   }
 }

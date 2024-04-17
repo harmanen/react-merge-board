@@ -74,7 +74,8 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --legacy-peer-deps
       - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        # Build and overwrite out/documentation with Typedoc output
+        run: ${{ steps.detect-package-manager.outputs.runner }} next build && ${{ steps.detect-package-manager.outputs.runner }} typedoc
       #      - name: Static HTML export with Next.js
       #        run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact

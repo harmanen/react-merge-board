@@ -9,6 +9,7 @@ const nextConfig = {
   reactStrictMode: true,
   basePath: path,
   assetPrefix: path,
+  trailingSlash: true,
 };
 
 export default nextConfig;
