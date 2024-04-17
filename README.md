@@ -1,6 +1,6 @@
 # React merge board
 
-Proof of concept demo of an editing tool for games with interactable items on a board. Deployed using GitHub actions.
+Proof of concept demo for games with interactive items on a board. Enables editing of certain item properties. Deployed using GitHub actions.
 
 https://harmanen.github.io/react-merge-board/
 
@@ -18,11 +18,32 @@ Build and run locally with `npm run build` and `npm run start`.
 
 [Typedoc](https://typedoc.org/) documentation available [here](https://harmanen.github.io/react-merge-board/documentation/).
 
+Documentation can be updated with `npm run docs`.
+
 ## Tests
 
 Run all tests with `npm run dev` or a single file with `npx jest __tests__/<file>`.
 
 ## Version history
+
+### 1.0
+
+- Features implemented according to the [specification](docs/Specification.pdf). See also the [initial design](docs/Initial_design.pdf).
+- The following best practices were complied with
+  - Code linting and formatting
+  - TypeScript
+  - Documentation using Typedoc
+  - Test automation (render and functionality tests)
+  - Manual test rounds before release
+  - Validation checks with axe DevTools and Lighthouse
+  - Responsive design
+- Test reports
+  - [Automated](https://github.com/harmanen/react-merge-board/issues/14)
+  - [Manual](https://github.com/harmanen/react-merge-board/issues/21)
+- Out of scope at this point
+  - Item interactions (merging or chaining)
+
+### 0.x
 
 - **0.15: Hotfix**
   - Fix [Issue #31](https://github.com/harmanen/react-merge-board/issues/31)
