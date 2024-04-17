@@ -24,6 +24,9 @@ Run all tests with `npm run dev` or a single file with `npx jest __tests__/<file
 
 ## Version history
 
+- **0.15: Hotfix**
+  - Fix [Issue #31](https://github.com/harmanen/react-merge-board/issues/31)
+
 - **0.14: Documentation**
   - See [PR #30](https://github.com/harmanen/react-merge-board/pull/30)
   - Note: routing to Typedoc output in `/public` did not work in production. Overwrite /out/documentation with Typedoc output after build instead...
